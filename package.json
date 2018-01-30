@@ -27,10 +27,5 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "module-alias": "^2.0.3"
-  },
-  "_moduleAliases": {
-    "@core": "core",
-    "@operators": "operators",
-    "@test": "test"
   }
 }
