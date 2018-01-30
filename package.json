@@ -6,7 +6,7 @@
   "scripts": {
     "start": "babel-node index.js",
     "test": "mocha --require babel-core/register",
-    "lint": "eslint ./core ./test ./operators --fix"
+    "lint": "eslint --fix ."
   },
   "keywords": [],
   "author": "",
