@@ -1,7 +1,6 @@
 import Rx from '@core'
 
 module.exports = period => Rx.Observable.create(observer => {
-  
   let i = 0
 
   const timeout = setInterval(() => observer.next(i++), period)

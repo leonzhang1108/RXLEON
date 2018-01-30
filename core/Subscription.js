@@ -1,5 +1,5 @@
 class Subscription {
-  constructor(unsubscribe) {
+  constructor (unsubscribe) {
     this.unsubscribe = unsubscribe
   }
 }

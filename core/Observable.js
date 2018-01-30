@@ -1,7 +1,7 @@
 import Subscriber from './Subscriber'
 
 class Observable {
-  constructor(subscribe) {
+  constructor (subscribe) {
     this.subscribe = subscribe
   }
 

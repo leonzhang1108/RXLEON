@@ -10,7 +10,7 @@ describe('interval', () => {
     const subscription = Rx.Observable.interval(100).subscribe({
       next: x => assert.strictEqual(x, expected.shift(), x),
       error: () => done('error should not be called'),
-      complete: () => {},
+      complete: () => {}
     })
 
     setTimeout(() => {

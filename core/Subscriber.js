@@ -1,7 +1,7 @@
 import Subscription from './Subscription'
 
 class Subscriber extends Subscription {
-  constructor(observer) {
+  constructor (observer) {
     super(() => {})
     this.observer = observer
   }

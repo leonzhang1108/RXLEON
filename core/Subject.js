@@ -2,7 +2,7 @@ import Observable from './Observable'
 import Subscription from './Subscription'
 
 class Subject extends Observable {
-  constructor() {
+  constructor () {
     super(observer => {
       this.observers.push(observer)
       return new Subscription(() => {
