@@ -1,6 +1,4 @@
-import Rx from './index'
-
-
+import Rx from '@core'
 
 module.exports = period => Rx.Observable.create(observer => {
   

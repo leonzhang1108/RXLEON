@@ -1,3 +1,10 @@
 {
-  "presets": ["env", "stage-0"]
+  "presets": ["env", "stage-0"],
+  "plugins": [
+    ["module-alias", [
+      { "src": "./core", "expose": "@core" },
+      { "src": "./operators", "expose": "@operators" },
+      { "src": "./test", "expose": "@test" }
+    ]]
+  ]
 }

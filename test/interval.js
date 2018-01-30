@@ -1,6 +1,6 @@
 import assert from 'assert'
-import Rx from '../index'
-import interval from '../interval'
+import Rx from '@core'
+import interval from '@operators/interval'
 Rx.Observable.interval = interval
 
 describe('interval', () => {
@@ -8,7 +8,7 @@ describe('interval', () => {
     const expected = [0, 1, 2, 3, 4]
 
     const subscription = Rx.Observable.interval(100).subscribe({
-      next: x => assert.strictEqual(x, expected.shift()),
+      next: x => assert.strictEqual(x, expected.shift(), x),
       error: () => done('error should not be called'),
       complete: () => {},
     })

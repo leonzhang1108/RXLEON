@@ -15,7 +15,14 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-module-alias": "^1.6.0",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-0": "^6.24.1"
+    "babel-preset-stage-0": "^6.24.1",
+    "module-alias": "^2.0.3"
+  },
+  "_moduleAliases": {
+    "@core": "core",
+    "@operators": "operators",
+    "@test": "test"
   }
 }
