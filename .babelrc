@@ -3,8 +3,9 @@
   "plugins": [
     ["module-alias", [
       { "src": "./core", "expose": "@core" },
+      { "src": "./test", "expose": "@test" },
       { "src": "./operators", "expose": "@operators" },
-      { "src": "./test", "expose": "@test" }
+      { "src": "./observable", "expose": "@observable" }
     ]]
   ]
 }

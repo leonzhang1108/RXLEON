@@ -2,19 +2,19 @@ import Subscription from './Subscription'
 
 class Subscriber extends Subscription {
   constructor (observer) {
-    super(() => {})
+    super()
     this.observer = observer
   }
 
   next = x => this.observer.next(x)
 
   error = e => {
-    this.observer.error(e)
+    this.observer.error && this.observer.error(e)
     this.unsubscribe()
   }
 
   complete = () => {
-    this.observer.complete()
+    this.observer.complete && this.observer.complete()
     this.unsubscribe()
   }
 }
