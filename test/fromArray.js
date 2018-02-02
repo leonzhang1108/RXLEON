@@ -2,7 +2,6 @@ import assert from 'assert'
 import Rx from '@core'
 import fromArray from '@observable/fromArray'
 import map from '@operators/map'
-
 Rx.Observable.fromArray = fromArray
 Rx.Observable.prototype.map = map
 

@@ -1,7 +1,9 @@
 import assert from 'assert'
 import Rx from '@core'
 import interval from '@observable/interval'
+import map from '@operators/map'
 Rx.Observable.interval = interval
+Rx.Observable.prototype.map = map
 
 describe('interval', () => {
   it('should support a basic use case', done => {
