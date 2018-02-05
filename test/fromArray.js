@@ -1,9 +1,7 @@
 import assert from 'assert'
 import Rx from '@core'
-import fromArray from '@observable/fromArray'
-import map from '@operators/map'
-Rx.Observable.fromArray = fromArray
-Rx.Observable.prototype.map = map
+Rx.Observable.fromArray = require('@observable/fromArray')
+Rx.Observable.prototype.map = require('@operators/map')
 
 describe('fromArray', () => {
   it('fromArray test', done => {
@@ -13,7 +11,10 @@ describe('fromArray', () => {
     let expected = list.map(mutateFunction)
 
     Rx.Observable.fromArray(list).map(mutateFunction).subscribe({
-      next: x => assert.strictEqual(x, expected.shift()),
+      next: x => {
+        console.log(x)
+        assert.strictEqual(x, expected.shift())
+      },
       error: () => done('error should not be called'),
       complete: done
     })

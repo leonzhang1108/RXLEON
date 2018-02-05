@@ -1,9 +1,7 @@
 import assert from 'assert'
 import Rx from '@core'
-import interval from '@observable/interval'
-import map from '@operators/map'
-Rx.Observable.interval = interval
-Rx.Observable.prototype.map = map
+Rx.Observable.interval = require('@observable/interval')
+Rx.Observable.prototype.map = require('@operators/map')
 
 describe('interval', () => {
   it('should support a basic use case', done => {
@@ -13,7 +11,10 @@ describe('interval', () => {
     let expected = list.map(mutateFunction)
 
     const subscription = Rx.Observable.interval(100).map(mutateFunction).subscribe({
-      next: x => assert.strictEqual(x, expected.shift()),
+      next: x => {
+        console.log(x)
+        assert.strictEqual(x, expected.shift())
+      },
       error: () => done('error should not be called'),
       complete: () => {}
     })
