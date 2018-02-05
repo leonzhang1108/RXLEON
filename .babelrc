@@ -2,7 +2,7 @@
   "presets": ["env", "stage-0"],
   "plugins": [
     ["module-alias", [
-      { "src": "./core", "expose": "@core" },
+      { "src": "./core", "expose": "rxjs" },
       { "src": "./test", "expose": "@test" },
       { "src": "./operators", "expose": "@operators" },
       { "src": "./observable", "expose": "@observable" }

@@ -1,4 +1,4 @@
-import Rx from '@core'
+import Rx from 'rxjs'
 
 module.exports = () => Rx.Observable.create(observer => {
   observer.complete()

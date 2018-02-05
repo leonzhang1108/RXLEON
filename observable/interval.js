@@ -1,4 +1,4 @@
-import Rx from '@core'
+import Rx from 'rxjs'
 
 module.exports = period => Rx.Observable.create(observer => {
   let i = 0

@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Rx from '@core'
+import Rx from 'rxjs'
 Rx.Observable.interval = require('@observable/interval')
 Rx.Observable.prototype.map = require('@operators/map')
 

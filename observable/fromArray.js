@@ -1,4 +1,4 @@
-import Rx from '@core'
+import Rx from 'rxjs'
 
 module.exports = array => Rx.Observable.create(observer => {
   array.forEach(x => observer.next(x))

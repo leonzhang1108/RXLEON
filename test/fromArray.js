@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Rx from '@core'
+import Rx from 'rxjs'
 Rx.Observable.fromArray = require('@observable/fromArray')
 Rx.Observable.prototype.map = require('@operators/map')
 
