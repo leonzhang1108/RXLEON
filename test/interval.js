@@ -4,7 +4,7 @@ Rx.Observable.interval = require('@observable/interval')
 Rx.Observable.prototype.map = require('@operators/map')
 
 describe('interval', () => {
-  it('should support a basic use case', done => {
+  it('interval test', done => {
     const list = [0, 1, 2, 3, 4]
     const mutateFunction = x => x * x
 
