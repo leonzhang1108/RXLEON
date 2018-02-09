@@ -1,4 +1,5 @@
 import Rx from 'rxjs'
+import { bindContext } from './util.js'
 
 const skip = context => max => Rx.Observable.create(observer => {
 
@@ -19,6 +20,4 @@ const skip = context => max => Rx.Observable.create(observer => {
   return context.subscribe({ next, error, complete })
 })
 
-module.exports = function (f) {
-  return skip(this)(f)
-}
+module.exports = bindContext(skip)

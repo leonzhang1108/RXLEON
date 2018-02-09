@@ -10,9 +10,8 @@ describe('interval', () => {
 
     let expected = list.map(mutateFunction)
 
-    const subscription = Rx.Observable.interval(100).map(mutateFunction).subscribe({
+    const subscription = Rx.Observable.interval(10).map(mutateFunction).subscribe({
       next: x => {
-        console.log(x)
         assert.strictEqual(x, expected.shift())
       },
       error: () => done('error should not be called'),
@@ -22,6 +21,6 @@ describe('interval', () => {
     setTimeout(() => {
       subscription.unsubscribe()
       done()
-    }, 510)
+    }, 51)
   })
 })

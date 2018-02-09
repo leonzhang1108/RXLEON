@@ -12,7 +12,6 @@ describe('fromArray', () => {
 
     Rx.Observable.fromArray(list).map(mutateFunction).subscribe({
       next: x => {
-        console.log(x)
         assert.strictEqual(x, expected.shift())
       },
       error: () => done('error should not be called'),

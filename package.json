@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js",
     "test": "mocha --require babel-core/register",
     "lint": "eslint --fix ."
   },

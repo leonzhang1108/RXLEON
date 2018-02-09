@@ -1,4 +1,5 @@
 import Rx from 'rxjs'
+import { bindContext } from './util.js'
 
 const map = context => f => Rx.Observable.create(observer => {
   const next = x => {
@@ -23,6 +24,4 @@ const map = context => f => Rx.Observable.create(observer => {
   return context.subscribe({ next, error, complete })
 })
 
-module.exports = function (f) {
-  return map(this)(f)
-}
+module.exports = bindContext(map)

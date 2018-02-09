@@ -9,7 +9,6 @@ describe('take', () => {
     let expected = [0, 1, 2]
     Rx.Observable.interval(10).take(3).subscribe({
       next: x => {
-        console.log(x)
         assert.strictEqual(x, expected.shift())
       },
       error: () => done('error should not be called'),
