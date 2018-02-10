@@ -3,14 +3,7 @@ import { bindContext } from './util.js'
 
 const map = context => f => Rx.Observable.create(observer => {
   const next = x => {
-    let y
-    try {
-      y = f(x)
-    } catch (e) {
-      error(e)
-      return
-    }
-    observer.next(y)
+    observer.next(f(x))
   }
 
   const error = e => {

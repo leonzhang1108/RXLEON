@@ -2,7 +2,6 @@ import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
 const skip = context => max => Rx.Observable.create(observer => {
-
   let skipped = 0
 
   const next = x => {

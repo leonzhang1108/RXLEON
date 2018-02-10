@@ -2,11 +2,10 @@ import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
 const take = context => max => Rx.Observable.create(observer => {
-
   let taken = 0
 
   const next = x => {
-    taken += 1;
+    taken += 1
     if (taken < max) {
       observer.next(x)
     } else if (taken === max) {
