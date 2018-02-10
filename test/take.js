@@ -1,6 +1,6 @@
 import assert from 'assert'
 import Rx from 'rxjs'
-Rx.Observable.interval = require('@observable/interval')
+Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.prototype.take = require('@operators/take')
 
 describe('take', () => {

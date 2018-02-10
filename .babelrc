@@ -5,7 +5,7 @@
       { "src": "./core", "expose": "rxjs" },
       { "src": "./test", "expose": "@test" },
       { "src": "./operators", "expose": "@operators" },
-      { "src": "./observable", "expose": "@observable" }
+      { "src": "./observables", "expose": "@observables" }
     ]]
   ]
 }

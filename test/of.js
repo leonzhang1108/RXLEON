@@ -1,19 +1,18 @@
 import assert from 'assert'
 import Rx from 'rxjs'
-Rx.Observable.fromArray = require('@observables/fromArray')
+Rx.Observable.of = require('@observables/of')
 Rx.Observable.prototype.filter = require('@operators/filter')
 
-describe('filter', () => {
-  it('filter test', done => {
-
-    let expected = [0, 2, 4, 6, 8]
-    Rx.Observable.fromArray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]).filter(x => x % 2 === 0).subscribe({
+describe('of', () => {
+  it('of test', done => {
+    let expected = [1, 3, 5, 7]
+    
+    Rx.Observable.of(1, 2, 3, 4, 5, 6, 7).filter(x => x % 2 === 1).subscribe({
       next: x => {
         assert.strictEqual(x, expected.shift())
       },
       error: () => done('error should not be called'),
       complete: done
     })
-
   })
 })

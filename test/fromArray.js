@@ -1,6 +1,6 @@
 import assert from 'assert'
 import Rx from 'rxjs'
-Rx.Observable.fromArray = require('@observable/fromArray')
+Rx.Observable.fromArray = require('@observables/fromArray')
 Rx.Observable.prototype.map = require('@operators/map')
 
 describe('fromArray', () => {
