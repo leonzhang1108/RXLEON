@@ -2,8 +2,6 @@ import assert from 'assert'
 import Rx from 'rxjs'
 Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.prototype.take = require('@operators/take')
-Rx.Observable.prototype.do = require('@operators/do')
-Rx.Observable.prototype.mapTo = require('@operators/mapTo')
 Rx.Observable.prototype.multicast = require('@operators/multicast')
 
 describe('multicast', () => {

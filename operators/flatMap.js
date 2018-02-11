@@ -1,10 +1,10 @@
 import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
-const doOperator = context => f => Rx.Observable.create(observer => {
+const flatMap = context => f => Rx.Observable.create(observer => {
   const next = x => {
-    f(x)
-    observer.next(x)
+    const observable = f(x)
+    observable.subscribe({ next: observer.next })
   }
 
   const error = e => {
@@ -18,4 +18,4 @@ const doOperator = context => f => Rx.Observable.create(observer => {
   return context.subscribe({ next, error, complete })
 })
 
-module.exports = bindContext(doOperator)
+module.exports = bindContext(flatMap)
