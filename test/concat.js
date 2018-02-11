@@ -5,7 +5,6 @@ Rx.Observable.prototype.concat = require('@operators/concat')
 
 describe('concat', () => {
   it('concat test', done => {
-
     const ob1 = Rx.Observable.of(1, 2, 3)
 
     const ob2 = Rx.Observable.of(4, 5, 6)

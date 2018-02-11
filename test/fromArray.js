@@ -6,11 +6,11 @@ Rx.Observable.prototype.map = require('@operators/map')
 describe('fromArray', () => {
   it('fromArray test', done => {
     const list = [1, 2, 3, 4]
-    const mutateFunction = x => x * x
+    const mutateFunc = x => x * x
 
-    let expected = list.map(mutateFunction)
+    let expected = list.map(mutateFunc)
 
-    Rx.Observable.fromArray(list).map(mutateFunction).subscribe({
+    Rx.Observable.fromArray(list).map(mutateFunc).subscribe({
       next: x => {
         assert.strictEqual(x, expected.shift())
       },
