@@ -5,7 +5,7 @@ const take = context => max => Rx.Observable.create(observer => {
   let taken = 0
 
   const next = x => {
-    taken += 1
+    taken++
     if (taken < max) {
       observer.next(x)
     } else if (taken === max) {
