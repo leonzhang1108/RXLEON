@@ -1,4 +1,4 @@
 import flatMap from './flatMap'
 
-// equal to flatMap
+// same as flatMap
 module.exports = flatMap
