@@ -5,10 +5,9 @@ const distinct = context => () => Rx.Observable.create(observer => {
   let last
 
   const next = x => {
-    if (!last || last !== x) {
-      last = x
-      observer.next(x)
-    }
+    if (last && last === x) return
+    last = x
+    observer.next(x)
   }
 
   const error = e => {
