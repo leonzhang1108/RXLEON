@@ -2,6 +2,8 @@ import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
 const concat = context => observable => Rx.Observable.create(observer => {
+  let subscription
+
   const next = x => {
     observer.next(x)
   }
@@ -11,10 +13,12 @@ const concat = context => observable => Rx.Observable.create(observer => {
   }
 
   const complete = () => {
-    observable.subscribe(observer)
+    subscription = observable.subscribe(observer)
   }
 
-  return context.subscribe({ next, error, complete })
+  subscription = context.subscribe({ next, error, complete })
+
+  return subscription
 })
 
 module.exports = bindContext(concat)
