@@ -15,7 +15,6 @@ describe('switchMap', () => {
       .switchMap(() => Rx.Observable.interval(20).take(3))
       .subscribe({
         next: x => {
-          // console.log(x)
           assert.strictEqual(x, expected.shift())
         },
         error: () => done('error should not be called'),

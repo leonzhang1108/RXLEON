@@ -2,7 +2,7 @@ import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
 const switchMap = context => f => Rx.Observable.create(observer => {
-  const innerSubscription = new Rx.Subscription(() => {})
+  const innerSubscription = new Rx.Subscription()
   let active = 1
 
   const next = x => {
