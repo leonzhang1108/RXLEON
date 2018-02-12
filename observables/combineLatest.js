@@ -19,7 +19,7 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
       vals[index] = x
       gotValue[index] = true
 
-      // 如果都有值了 打印
+      // if has value, print
       if (gotValue.every(x => x === true)) {
         func
           ? observer.next(func(...vals))

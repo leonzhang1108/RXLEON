@@ -6,7 +6,7 @@ const every = context => f => Rx.Observable.create(observer => {
 
   const next = x => {
     y = f(x)
-    if(y) return
+    if (y) return
     observer.next(y)
     observer.complete()
     subscription.unsubscribe()

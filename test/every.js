@@ -5,7 +5,7 @@ Rx.Observable.prototype.every = require('@operators/every')
 
 describe('every', () => {
   it('every true test', done => {
-    const list = [2,4,6,8,10]
+    const list = [2, 4, 6, 8, 10]
 
     Rx.Observable.fromArray(list)
       .every(val => val % 2 === 0)
@@ -19,7 +19,7 @@ describe('every', () => {
   })
 
   it('every false test', done => {
-    const list = [1,2,3,4,5]
+    const list = [1, 2, 3, 4, 5]
 
     Rx.Observable.fromArray(list)
       .every(val => val % 2 === 0)
