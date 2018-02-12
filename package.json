@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require babel-core/register",
+    "test": "mocha --require babel-core/register ./test/mergeAll.js",
     "lint": "eslint --fix ."
   },
   "keywords": [],
