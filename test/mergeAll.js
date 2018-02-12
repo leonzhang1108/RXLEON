@@ -18,8 +18,7 @@ describe('mergeAll', () => {
       .mergeAll()
       .subscribe({
         next: x => {
-          console.log(x)
-          // assert.strictEqual(x, expected.shift())
+          assert.strictEqual(x, expected.shift())
         },
         error: () => done('error should not be called'),
         complete: done
