@@ -1,12 +1,13 @@
 import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
-const mergeAll = context => () => Rx.Observable.create(observer => {
-  const next = observable => {
-    observable.subscribe({
-      next: observer.next,
-      error
-    })
+const distinct = context => () => Rx.Observable.create(observer => {
+  let list = []
+
+  const next = x => {
+    if (list.indexOf(x) >= 0) return
+    list.push(x)
+    observer.next(x)
   }
 
   const error = e => {
@@ -20,4 +21,4 @@ const mergeAll = context => () => Rx.Observable.create(observer => {
   return context.subscribe({ next, error, complete })
 })
 
-module.exports = bindContext(mergeAll)
+module.exports = bindContext(distinct)
