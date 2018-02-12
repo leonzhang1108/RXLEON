@@ -1,7 +1,11 @@
 import Rx from 'rxjs'
 
 module.exports = (...observables) => Rx.Observable.create(observer => {
-  const func = observables.pop()
+  let func
+
+  if (typeof observables[observables.length - 1] === 'function') {
+    func = observables.pop()
+  }
 
   // init, all undefined
   const vals = observables.map(observable => undefined)
@@ -17,8 +21,9 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
 
       // 如果都有值了 打印
       if (gotValue.every(x => x === true)) {
-        const y = func(...vals)
-        observer.next(y)
+        func
+          ? observer.next(func(...vals))
+          : observer.next(vals)
       }
     }
 
