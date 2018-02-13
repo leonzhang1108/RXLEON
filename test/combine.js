@@ -1,10 +1,13 @@
 import assert from 'assert'
 import Rx from 'rxjs'
 Rx.Observable.timer = require('@observables/timer')
+Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.combineLatest = require('@observables/combineLatest')
+Rx.Observable.prototype.map = require('@operators/map')
 Rx.Observable.prototype.take = require('@operators/take')
+Rx.Observable.prototype.combineAll = require('@operators/combineAll')
 
-describe('combineLatest', () => {
+describe('combine', () => {
   it('combineLatest test with callback function', done => {
     let expected = [
       [0, 0, 0],
@@ -63,5 +66,33 @@ describe('combineLatest', () => {
       error: () => done('error should not be called'),
       complete: done
     })
+  })
+
+  it('combineAll test', done => {
+    let expected = [
+      [ 'Result (0): 0', 'Result (1): 0' ],
+      [ 'Result (0): 1', 'Result (1): 0' ],
+      [ 'Result (0): 1', 'Result (1): 1' ],
+      [ 'Result (0): 2', 'Result (1): 1' ],
+      [ 'Result (0): 2', 'Result (1): 2' ],
+      [ 'Result (0): 3', 'Result (1): 2' ],
+      [ 'Result (0): 3', 'Result (1): 3' ],
+      [ 'Result (0): 4', 'Result (1): 3' ],
+      [ 'Result (0): 4', 'Result (1): 4' ]
+    ]
+
+    Rx.Observable.interval(10).take(2).map(val =>
+      Rx.Observable.interval(10)
+        .map(i => `Result (${val}): ${i}`)
+        .take(5)
+    )
+      .combineAll()
+      .subscribe({
+        next: x => {
+          assert.deepEqual(x, expected.shift())
+        },
+        error: () => done('error should not be called'),
+        complete: done
+      })
   })
 })

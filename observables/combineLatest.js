@@ -2,6 +2,7 @@ import Rx from 'rxjs'
 
 module.exports = (...observables) => Rx.Observable.create(observer => {
   let func
+  let active = 0
 
   if (typeof observables[observables.length - 1] === 'function') {
     func = observables.pop()
@@ -15,6 +16,7 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
   const groupSubscription = new Rx.GroupSubscription()
 
   observables.forEach((observable, index) => {
+    active++
     const next = x => {
       vals[index] = x
       gotValue[index] = true
@@ -27,9 +29,11 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
       }
     }
 
-    const error = e => observer.error(e)
+    const error = observer.error
 
-    const complete = () => observer.complete()
+    const complete = () => {
+      --active <= 0 && observer.complete()
+    }
 
     groupSubscription.add(observable.subscribe({next, error, complete}))
   })
