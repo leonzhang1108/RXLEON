@@ -1,5 +1,5 @@
 module.exports = {
-  bindContext: operator => function (f) {
-    return operator(this)(f)
+  bindContext: operator => function (...v) {
+    return operator(this)(...v)
   }
 }
