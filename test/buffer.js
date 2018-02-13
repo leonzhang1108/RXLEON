@@ -7,16 +7,16 @@ Rx.Observable.prototype.buffer = require('@operators/buffer')
 describe('buffer', () => {
   it('buffer test', done => {
     let expected = [
-      [0],
-      [1, 2],
-      [3, 4],
-      [5, 6],
-      [7, 8]
+      [0, 1],
+      [2, 3],
+      [4, 5],
+      [6, 7],
+      [8, 9]
     ]
 
     const interval = Rx.Observable.interval(20)
 
-    const bufferBy = Rx.Observable.interval(40)
+    const bufferBy = Rx.Observable.interval(41)
 
     interval.buffer(bufferBy).take(5).subscribe({
       next: x => {

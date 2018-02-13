@@ -5,13 +5,8 @@ const take = context => max => Rx.Observable.create(observer => {
   let taken = 0
 
   const next = x => {
-    taken++
-    if (taken < max) {
-      observer.next(x)
-    } else if (taken === max) {
-      observer.next(x)
-      observer.complete()
-    }
+    observer.next(x)
+    ++taken === max && observer.complete()
   }
 
   const error = e => {
