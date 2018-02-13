@@ -14,6 +14,7 @@ const startWith = context => (...initVals) => Rx.Observable.create(observer => {
   }
 
   const complete = () => {
+    storedVals.forEach(observer.next)
     observer.complete()
   }
 
