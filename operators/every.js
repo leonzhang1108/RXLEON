@@ -3,6 +3,7 @@ import { bindContext } from './util.js'
 
 const every = context => f => Rx.Observable.create(observer => {
   let y = false
+  let subscription
 
   const next = x => {
     y = f(x)
@@ -21,7 +22,7 @@ const every = context => f => Rx.Observable.create(observer => {
     observer.complete()
   }
 
-  const subscription = context.subscribe({ next, error, complete })
+  subscription = context.subscribe({ next, error, complete })
 
   return subscription
 })
