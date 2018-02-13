@@ -12,6 +12,10 @@ class GroupSubscription {
       subscription.unsubscribe()
     })
   }
+
+  unsubscribeIndex = i => {
+    this.subscriptions[i].unsubscribe()
+  }
 }
 
 module.exports = GroupSubscription
