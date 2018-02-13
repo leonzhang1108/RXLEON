@@ -5,7 +5,7 @@ const concatMapTo = context => observable => Rx.Observable.create(observer => {
   let subscription = new Rx.Subscription()
   let groupSubscription = new Rx.GroupSubscription()
   let active = 0
-  let inited = false
+  let initiated = false
 
   const concatSubscribe = ob => {
     subscription.unsubscribe()
@@ -15,7 +15,7 @@ const concatMapTo = context => observable => Rx.Observable.create(observer => {
       complete: () => {
         --active <= 0
           ? observer.complete()
-          : concatSubscribe(observable)
+          : concatSubscribe(ob)
       }
     })
   }
@@ -23,8 +23,8 @@ const concatMapTo = context => observable => Rx.Observable.create(observer => {
   const next = x => {
     active++
 
-    if (!inited) {
-      inited = true
+    if (!initiated) {
+      initiated = true
       concatSubscribe(observable)
     }
   }
