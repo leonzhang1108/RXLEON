@@ -5,8 +5,8 @@ Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.prototype.take = require('@operators/take')
 Rx.Observable.prototype.mapTo = require('@operators/mapTo')
 
-describe('skip', () => {
-  it('skip test', done => {
+describe('race', () => {
+  it('race test', done => {
     let expected = ['i won', 'i won', 'i won', 'i won', 'i won']
 
     Rx.Observable.race(
