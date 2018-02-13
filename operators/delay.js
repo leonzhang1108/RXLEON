@@ -7,11 +7,11 @@ const delay = context => period => Rx.Observable.create(observer => {
   }
 
   const error = e => {
-    observer.error(e)
+    setTimeout(() => observer.error(e), period)
   }
 
   const complete = () => {
-    observer.complete()
+    setTimeout(() => observer.complete(), period)
   }
 
   return context.subscribe({ next, error, complete })
