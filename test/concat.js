@@ -9,6 +9,7 @@ Rx.Observable.prototype.delay = require('@operators/delay')
 Rx.Observable.prototype.concat = require('@operators/concat')
 Rx.Observable.prototype.concatAll = require('@operators/concatAll')
 Rx.Observable.prototype.concatMap = require('@operators/concatMap')
+Rx.Observable.prototype.concatMapTo = require('@operators/concatMapTo')
 
 describe('concat', () => {
   it('concat test', done => {
@@ -71,6 +72,21 @@ describe('concat', () => {
     Rx.Observable.of(200, 100)
       .concatMap(v => Rx.Observable.of(v).delay(v))
       // .concatMap(v => Rx.Observable.interval(v).take(3))
+      .subscribe({
+        next: x => {
+          assert.strictEqual(x, expected.shift())
+        },
+        error: () => done('error should not be called'),
+        complete: done
+      })
+  })
+
+  it('concatMapTo test', done => {
+    let expected = [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]
+
+    Rx.Observable.interval(10)
+      .take(5)
+      .concatMapTo(Rx.Observable.interval(10).take(3))
       .subscribe({
         next: x => {
           assert.strictEqual(x, expected.shift())
