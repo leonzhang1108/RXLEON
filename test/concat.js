@@ -6,6 +6,7 @@ Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.prototype.take = require('@operators/take')
 Rx.Observable.prototype.mapTo = require('@operators/mapTo')
 Rx.Observable.prototype.concat = require('@operators/concat')
+Rx.Observable.prototype.concatAll = require('@operators/concatAll')
 
 describe('concat', () => {
   it('concat test', done => {
@@ -33,6 +34,24 @@ describe('concat', () => {
     const ob2 = Rx.Observable.interval(20).take(2).mapTo('second')
 
     const concat = Rx.Observable.concat(ob1, ob2)
+
+    concat.subscribe({
+      next: x => {
+        assert.strictEqual(x, expected.shift())
+      },
+      error: () => done('error should not be called'),
+      complete: done
+    })
+  })
+
+  it('concatAll test', done => {
+    let expected = ['ob1', 'ob1', 'ob2', 'ob2']
+
+    const ob1 = Rx.Observable.interval(100).take(2).mapTo('ob1')
+
+    const ob2 = Rx.Observable.interval(50).take(2).mapTo('ob2')
+
+    const concat = Rx.Observable.of(ob1, ob2).concatAll()
 
     concat.subscribe({
       next: x => {
