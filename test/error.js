@@ -4,6 +4,7 @@ Rx.Observable.of = require('@observables/of')
 Rx.Observable.throw = require('@observables/throw')
 Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.prototype.retry = require('@operators/retry')
+Rx.Observable.prototype.catch = require('@operators/catch')
 Rx.Observable.prototype.flatMap = require('@operators/flatMap')
 
 describe('error', () => {
@@ -35,6 +36,18 @@ describe('error', () => {
         error: e => {
           assert.strictEqual(e, expected.shift())
         },
+        complete: done
+      })
+  })
+
+  it('catch test', done => {
+    Rx.Observable.throw('this is an error')
+      .catch(val => Rx.Observable.of(`I caught: ${val}`))
+      .subscribe({
+        next: x => {
+          assert.strictEqual(x, 'I caught: this is an error')
+        },
+        error: () => done('error should not be called'),
         complete: done
       })
   })
