@@ -20,9 +20,9 @@ const merge = context => (...observables) => Rx.Observable.create(observer => {
 
   observables.forEach((observable, i) => {
     groupSubscription.add(observable.subscribe({
-      next, 
-      error, 
-      complete: () => complete(i)
+      next,
+      error,
+      complete: () => complete(i + 1)
     }))
   })
 
