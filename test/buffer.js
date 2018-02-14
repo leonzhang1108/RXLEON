@@ -2,6 +2,7 @@ import assert from 'assert'
 import Rx from 'rxjs'
 Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.prototype.take = require('@operators/take')
+Rx.Observable.prototype.delay = require('@operators/delay')
 Rx.Observable.prototype.buffer = require('@operators/buffer')
 
 describe('buffer', () => {
@@ -16,7 +17,7 @@ describe('buffer', () => {
 
     const interval = Rx.Observable.interval(40)
 
-    const bufferBy = Rx.Observable.interval(81)
+    const bufferBy = Rx.Observable.interval(80).delay(20)
 
     interval.buffer(bufferBy).take(5).subscribe({
       next: x => {
