@@ -1,9 +1,16 @@
 import Rx from 'rxjs'
 import { bindContext } from './util.js'
+Rx.Observable.of = require('@observables/of')
 
 const map = context => f => Rx.Observable.create(observer => {
   const next = x => {
-    observer.next(f(x))
+    let y
+    try {
+      y = f(x)
+      observer.next(y)
+    } catch (e) {
+      observer.error(Rx.Observable.of(x))
+    }
   }
 
   const error = e => {

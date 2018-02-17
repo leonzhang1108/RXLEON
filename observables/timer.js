@@ -1,11 +1,12 @@
 import Rx from 'rxjs'
 
-module.exports = (...vals) => Rx.Observable.create(observer => {
+module.exports = (...vals) => {
   let i = 0
   let delay, period
 
   if (vals.length === 0) {
-    observer.error('no parameters')
+    console.log('no parameters')
+    return
   }
 
   delay = vals.shift()
@@ -15,20 +16,27 @@ module.exports = (...vals) => Rx.Observable.create(observer => {
   }
 
   if (period) {
-    let timeout
+    return Rx.Observable.create(observer => {
+      let interval
 
-    const doInterval = () => {
-      timeout = setInterval(() => observer.next(i++), period)
-    }
+      const doInterval = () => {
+        interval = setInterval(() => observer.next(i++), period)
+      }
 
-    setTimeout(doInterval, delay)
+      let timeout = setTimeout(doInterval, delay)
 
-    return new Rx.Subscription(() => clearInterval(timeout))
+      return new Rx.Subscription(() => {
+        clearInterval(interval)
+        clearTimeout(timeout)
+      })
+    })
   } else {
-    setTimeout(() => observer.next(i), delay)
+    return Rx.Observable.create(observer => {
+      const timeout = setTimeout(() => {
+        observer.complete()
+      }, delay)
 
-    observer.complete()
-
-    return new Rx.Subscription()
+      return new Rx.Subscription(() => clearTimeout(timeout))
+    })
   }
-})
+}
