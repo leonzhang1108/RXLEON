@@ -8,7 +8,7 @@ describe('multicast', () => {
   it('multicast test', done => {
     const expected = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4]
 
-    const source = Rx.Observable.interval(100).take(5)
+    const source = Rx.Observable.interval(20).take(5)
 
     const multi = source.multicast(new Rx.Subject())
 

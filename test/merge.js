@@ -14,8 +14,8 @@ Rx.Observable.prototype.mergeMap = require('@operators/mergeMap')
 describe('merge', () => {
   it('merge test', done => {
     const expected = [1, 2, 1, 1, 2, 1, 1, 1, 1, 1]
-    const first = Rx.Observable.interval(100).mapTo(1)
-    const second = Rx.Observable.interval(200).mapTo(2).take(2)
+    const first = Rx.Observable.interval(20).mapTo(1)
+    const second = Rx.Observable.interval(40).mapTo(2).take(2)
 
     first.merge(second).take(10).subscribe({
       next: x => {
@@ -28,8 +28,8 @@ describe('merge', () => {
 
   it('merge static test', done => {
     const expected = [1, 1, 1, 2, 1, 2]
-    const first = Rx.Observable.interval(100).take(4)
-    const second = Rx.Observable.interval(350)
+    const first = Rx.Observable.interval(10).take(4)
+    const second = Rx.Observable.interval(35)
 
     Rx.Observable.merge(
       first.mapTo(1),
@@ -46,10 +46,10 @@ describe('merge', () => {
   it('mergeAll test', done => {
     let expected = [0, 1, 2, 0, 1, 2, 0, 1, 2]
 
-    Rx.Observable.interval(500)
+    Rx.Observable.interval(80)
       .take(3)
       .mapTo(0)
-      .map(x => Rx.Observable.interval(30).take(3))
+      .map(x => Rx.Observable.interval(15).take(3))
       .mergeAll()
       .subscribe({
         next: x => {

@@ -9,7 +9,7 @@ describe('startWith', () => {
   it('startWith interval test', done => {
     let expected = [-3, -2, -1, 0, 1, 2, 3]
     Rx.Observable
-      .interval(100)
+      .interval(10)
       .startWith(-3, -2, -1)
       .take(7)
       .subscribe({

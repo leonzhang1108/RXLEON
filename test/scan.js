@@ -4,8 +4,8 @@ Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.prototype.take = require('@operators/take')
 Rx.Observable.prototype.scan = require('@operators/scan')
 
-describe('skip', () => {
-  it('skip test', done => {
+describe('scan', () => {
+  it('scan test', done => {
     let expected = [0, 1, 3, 6, 10]
     Rx.Observable
       .interval(10)

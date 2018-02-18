@@ -15,9 +15,9 @@ describe('buffer', () => {
       [8, 9]
     ]
 
-    const interval = Rx.Observable.interval(40)
+    const interval = Rx.Observable.interval(20)
 
-    const bufferBy = Rx.Observable.interval(80).delay(20)
+    const bufferBy = Rx.Observable.interval(40).delay(10)
 
     interval.buffer(bufferBy).take(5).subscribe({
       next: x => {
