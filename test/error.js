@@ -11,7 +11,7 @@ Rx.Observable.prototype.delay = require('@operators/delay')
 Rx.Observable.prototype.retry = require('@operators/retry')
 Rx.Observable.prototype.catch = require('@operators/catch')
 Rx.Observable.prototype.flatMap = require('@operators/flatMap')
-Rx.Observable.prototype.delayWhen = require('@operators/delayWhen')
+// Rx.Observable.prototype.delayWhen = require('@operators/delayWhen')
 Rx.Observable.prototype.retryWhen = require('@operators/retryWhen')
 
 describe('error', () => {
@@ -47,29 +47,29 @@ describe('error', () => {
       })
   })
 
-  // it('retryWhen test', done => {
-  //   Rx.Observable.interval(100).map(val => {
-  //     if(val > 2) {
-  //       throw val
-  //     } else {
-  //       return val
-  //     }
-  //   })
-  //   .retryWhen(errors =>
-  //     errors
-  //       .do(val => console.log(`Value ${val} was too high!`))
-  //       .delayWhen(val => Rx.Observable.timer(1000))
-  //       // .delay(1000)
-  //   ).subscribe({
-  //     next: x => {
-  //       console.log(x)
-  //     },
-  //     error: e => {
-  //       console.log(e)
-  //     },
-  //     complete: done
-  //   })
-  // })
+  it('retryWhen test', done => {
+    let expected = [0, 1, 2, 0, 1, 2]
+
+    Rx.Observable.interval(20).map(val => {
+      if (val > 2) {
+        throw val
+      } else {
+        return val
+      }
+    }).retryWhen(errors =>
+      errors
+        .do(val => console.log(`Value ${val} was too high!`))
+        .delay(200)
+        // .delayWhen(() => Rx.Observable.timer(1000))
+      , 2
+    ).subscribe({
+      next: x => {
+        assert.strictEqual(x, expected.shift())
+      },
+      error: () => done('error should not be called'),
+      complete: done
+    })
+  })
 
   it('catch test', done => {
     Rx.Observable.throw('this is an error')

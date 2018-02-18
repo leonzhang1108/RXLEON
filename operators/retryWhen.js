@@ -1,8 +1,14 @@
 import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
-const retryWhen = context => f => Rx.Observable.create(observer => {
+const retryWhen = context => (f, max) => Rx.Observable.create(observer => {
+  let groupSubscription = new Rx.GroupSubscription()
+
   let subscription = new Rx.Subscription()
+
+  let innerSubscription = new Rx.Subscription()
+
+  let i = 0
 
   const next = x => {
     observer.next(x)
@@ -10,7 +16,17 @@ const retryWhen = context => f => Rx.Observable.create(observer => {
 
   const error = e => {
     const observable = f(e)
-    subscription = observable.subscribe({
+
+    innerSubscription.unsubscribe()
+
+    if (max) {
+      i++
+      if (i >= max) {
+        observer.complete()
+        return
+      }
+    }
+    innerSubscription = observable.subscribe({
       next: () => {},
       error: observer.error,
       complete: () => {
@@ -26,7 +42,11 @@ const retryWhen = context => f => Rx.Observable.create(observer => {
 
   subscription = context.subscribe({ next, error, complete })
 
-  return subscription
+  groupSubscription.add(subscription)
+
+  groupSubscription.add(innerSubscription)
+
+  return groupSubscription
 })
 
 module.exports = bindContext(retryWhen)

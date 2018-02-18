@@ -7,7 +7,7 @@
     "test": "mocha --require babel-core/register",
     "lint": "eslint --fix ."
   },
-  "keywords": [],
+  "keywords": ["rxjs"],
   "author": "leon",
   "license": "ISC",
   "dependencies": {

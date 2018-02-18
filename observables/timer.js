@@ -35,7 +35,6 @@ module.exports = (...vals) => {
       const timeout = setTimeout(() => {
         observer.complete()
       }, delay)
-
       return new Rx.Subscription(() => clearTimeout(timeout))
     })
   }

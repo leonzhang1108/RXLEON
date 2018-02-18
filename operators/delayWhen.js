@@ -1,14 +1,14 @@
 import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
-const delay = context => f => Rx.Observable.create(observer => {
+const delayWhen = context => f => Rx.Observable.create(observer => {
   let observable
 
-  let subscription = new Rx.Subscription()
+  let subscription
 
   const next = x => {
     observable = f(x)
-    subscription.unsubscribe()
+    subscription && subscription.unsubscribe()
     subscription = observable.subscribe({
       next,
       error,
@@ -30,4 +30,4 @@ const delay = context => f => Rx.Observable.create(observer => {
   return subscription
 })
 
-module.exports = bindContext(delay)
+module.exports = bindContext(delayWhen)

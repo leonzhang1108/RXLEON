@@ -2,6 +2,6 @@ import Rx from 'rxjs'
 
 module.exports = e => Rx.Observable.create(observer => {
   observer.error(e)
-  observer.complete()
+  Rx.Scheduler.async(observer.complete)
   return new Rx.Subscription()
 })
