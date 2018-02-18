@@ -50,9 +50,9 @@ describe('concat', () => {
   it('concatAll test', done => {
     let expected = ['ob1', 'ob1', 'ob2', 'ob2']
 
-    const ob1 = Rx.Observable.interval(100).take(2).mapTo('ob1')
+    const ob1 = Rx.Observable.interval(40).take(2).mapTo('ob1')
 
-    const ob2 = Rx.Observable.interval(50).take(2).mapTo('ob2')
+    const ob2 = Rx.Observable.interval(20).take(2).mapTo('ob2')
 
     const concat = Rx.Observable.of(ob1, ob2).concatAll()
 
@@ -66,10 +66,10 @@ describe('concat', () => {
   })
 
   it('concatMap test', done => {
-    let expected = [200, 100]
+    let expected = [20, 10]
     // let expected = [0,1,2,0,1,2]
 
-    Rx.Observable.of(200, 100)
+    Rx.Observable.of(20, 10)
       .concatMap(v => Rx.Observable.of(v).delay(v))
       // .concatMap(v => Rx.Observable.interval(v).take(3))
       .subscribe({
