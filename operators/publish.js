@@ -1,14 +1,7 @@
 import Rx from 'rxjs'
 import { bindContext } from './util.js'
+Rx.Observable.prototype.multicast = require('@operators/multicast')
 
-const publish = context => () => {
-  const subject = new Rx.Subject()
-
-  const observable = Rx.Observable.create(observer => subject.subscribe(observer))
-
-  observable.connect = () => context.subscribe(subject)
-
-  return observable
-}
+const publish = context => () => context.multicast(new Rx.Subject())
 
 module.exports = bindContext(publish)
