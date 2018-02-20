@@ -13,7 +13,7 @@ describe('multicasting', () => {
     const expected = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4]
 
     const source = Rx.Observable.interval(20).take(5)
-    
+
     const multi = source.multicast(new Rx.Subject())
 
     const next = x => assert.strictEqual(x, expected.shift())
@@ -50,13 +50,16 @@ describe('multicasting', () => {
   //   const complete = done
 
   //   const first = source.take(2).map(v => `first: ${v}`).subscribe({
-  //     next, error, 
+  //     next, error,
   //   })
 
   //   const second = source.take(2).map(v => `second: ${v}`).subscribe({
-  //     next, error, 
+  //     next, error,
   //   })
-    
+
+  //   console.log(source)
+  //   // setTimeout(source.unsubscribe, 1000)
+
   //   // source.connect()
   // })
 
