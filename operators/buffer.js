@@ -10,7 +10,7 @@ const buffer = context => observable => Rx.Observable.create(observer => {
       bufferList.push(x)
     },
     error: e => observer.error(e),
-    complete: e => observer.complete(e)
+    complete: () => observer.complete()
   })
 
   const bufferSubscription = observable.subscribe({
@@ -19,7 +19,7 @@ const buffer = context => observable => Rx.Observable.create(observer => {
       bufferList = []
     },
     error: e => observer.error(e),
-    complete: e => observer.complete(e)
+    complete: () => observer.complete()
   })
 
   groupSubscription.add(subscription)
