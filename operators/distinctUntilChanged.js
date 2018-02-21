@@ -1,7 +1,7 @@
 import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
-const distinct = context => () => Rx.Observable.create(observer => {
+const distinctUntilChanged = context => () => Rx.Observable.create(observer => {
   let last
 
   const next = x => {
@@ -21,4 +21,4 @@ const distinct = context => () => Rx.Observable.create(observer => {
   return context.subscribe({ next, error, complete })
 })
 
-module.exports = bindContext(distinct)
+module.exports = bindContext(distinctUntilChanged)
