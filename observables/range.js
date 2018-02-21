@@ -9,6 +9,6 @@ module.exports = (...ranges) => Rx.Observable.create(observer => {
     observer.next(i)
   }
 
-  Rx.Scheduler.async(observer.complete)
+  observer.complete()
   return new Rx.Subscription()
 })

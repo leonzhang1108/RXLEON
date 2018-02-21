@@ -6,13 +6,15 @@ const debounceTime = context => time => Rx.Observable.create(observer => {
   let timeout
 
   const next = x => {
-    if (onOff) {
-      observer.next(x)
-      onOff = false
-      timeout = setTimeout(() => {
-        onOff = true
-      }, time)
-    }
+    if (!onOff) return
+
+    observer.next(x)
+
+    onOff = false
+
+    timeout = setTimeout(() => {
+      onOff = true
+    }, time)
   }
 
   const error = e => {

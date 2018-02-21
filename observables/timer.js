@@ -32,10 +32,15 @@ module.exports = (...vals) => {
     })
   } else {
     return Rx.Observable.create(observer => {
+      let subscription = new Rx.Subscription()
+      
       const timeout = setTimeout(() => {
+        subscription.unsubscribe()
         observer.complete()
       }, delay)
-      return new Rx.Subscription(() => clearTimeout(timeout))
+
+      subscription = new Rx.Subscription(() => clearTimeout(timeout))
+      return subscription
     })
   }
 }
