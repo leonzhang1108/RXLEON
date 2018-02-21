@@ -8,8 +8,8 @@ const flatMap = context => f => Rx.Observable.create(observer => {
   const next = x => {
     const observable = f(x)
     const innerObserver = {
-      next: (y) => observer.next(y),
-      error: (e) => observer.error(e),
+      next: y => observer.next(y),
+      error: e => observer.error(e),
       complete: () => {
         --active === 0 && observer.complete()
       }
