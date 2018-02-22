@@ -2,20 +2,17 @@ import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
 const throttleTime = context => time => Rx.Observable.create(observer => {
-  
   let timeout
   let onOff = true
-
   let latest
 
   const next = x => {
-
     latest = x
 
     if (!onOff) return
 
     onOff = false
-    
+
     clearTimeout(timeout)
 
     timeout = setTimeout(() => {
