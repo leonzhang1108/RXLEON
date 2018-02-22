@@ -3,27 +3,20 @@ import { bindContext } from './util.js'
 
 const debounce = context => f => Rx.Observable.create(observer => {
   let groupSubscription = new Rx.GroupSubscription()
-  let onOff = true
+  let subscription = new Rx.Subscription()
 
-  const next = x => {
-    if (!onOff) return
-
-    observer.next(x)
-
-    onOff = false
-
-    const observable = f(x)
-
-    const subscription = observable.subscribe({
+  const doDebounce = func => {
+    const observable = f()
+    subscription.unsubscribe()
+    subscription = observable.subscribe({
       next: x => observer.next(x),
       error: e => observer.error(e),
-      complete: () => {
-        onOff = true
-        subscription.unsubscribe()
-      }
+      complete: func
     })
+  }
 
-    groupSubscription.add(subscription)
+  const next = x => {
+    doDebounce(() => observer.next(x))
   }
 
   const error = e => {
@@ -31,9 +24,10 @@ const debounce = context => f => Rx.Observable.create(observer => {
   }
 
   const complete = () => {
-    observer.complete()
+    doDebounce(observer.complete)
   }
 
+  groupSubscription.add(subscription)
   groupSubscription.add(context.subscribe({ next, error, complete }))
 
   return groupSubscription

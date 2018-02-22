@@ -2,19 +2,15 @@ import Rx from 'rxjs'
 import { bindContext } from './util.js'
 
 const debounceTime = context => time => Rx.Observable.create(observer => {
-  let onOff = true
   let timeout
 
+  const doDebouceTime = f => {
+    clearTimeout(timeout)
+    timeout = setTimeout(f, time)
+  }
+
   const next = x => {
-    if (!onOff) return
-
-    observer.next(x)
-
-    onOff = false
-
-    timeout = setTimeout(() => {
-      onOff = true
-    }, time)
+    doDebouceTime(() => observer.next(x))
   }
 
   const error = e => {
@@ -22,7 +18,7 @@ const debounceTime = context => time => Rx.Observable.create(observer => {
   }
 
   const complete = () => {
-    observer.complete()
+    doDebouceTime(observer.complete)
   }
 
   const subscription = context.subscribe({ next, error, complete })
