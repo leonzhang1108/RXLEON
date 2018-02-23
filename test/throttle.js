@@ -21,10 +21,10 @@ describe('throttle', () => {
       })
   })
   it('throttleTime test', done => {
-    let expected = [9, 19, 29]
+    let expected = [0, 10, 20]
 
-    Rx.Observable.interval(5)
-      .throttleTime(50)
+    Rx.Observable.interval(10)
+      .throttleTime(100)
       .take(3)
       .subscribe({
         next: x => {
