@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext } from '@utils'
 
 const flatMap = context => f => Rx.Observable.create(observer => {
   let active = 0

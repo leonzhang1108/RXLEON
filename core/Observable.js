@@ -1,4 +1,5 @@
 import Subscriber from './Subscriber'
+import { bindUnsubscribe } from '@utils'
 
 class Observable {
   constructor (subscribe) {
@@ -8,7 +9,7 @@ class Observable {
   static create = subscribe => new Observable(observer => {
     const subscriber = new Subscriber(observer)
     const subscription = subscribe(subscriber)
-    subscriber.unsubscribe = subscription.unsubscribe.bind(subscription)
+    bindUnsubscribe(subscriber, subscription)
     return subscription
   })
 }

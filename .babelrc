@@ -4,6 +4,7 @@
     ["module-alias", [
       { "src": "./core", "expose": "rxjs" },
       { "src": "./test", "expose": "@test" },
+      { "src": "./utils", "expose": "@utils" },
       { "src": "./operators", "expose": "@operators" },
       { "src": "./observables", "expose": "@observables" }
     ]]

@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext, bindUnsubscribe } from './util.js'
+import { bindContext, bindUnsubscribe } from '@utils'
 
 const retryWhen = context => f => Rx.Observable.create(observer => {
   let groupSubscription = new Rx.GroupSubscription()
@@ -39,7 +39,6 @@ const retryWhen = context => f => Rx.Observable.create(observer => {
   groupSubscription.add(subscription)
 
   groupSubscription.add(innerSubscription)
-
 
   return groupSubscription
 })

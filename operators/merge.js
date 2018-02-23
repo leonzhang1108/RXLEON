@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext } from '@utils'
 
 const merge = context => (...observables) => Rx.Observable.create(observer => {
   let groupSubscription = new Rx.GroupSubscription()
@@ -20,8 +20,7 @@ const merge = context => (...observables) => Rx.Observable.create(observer => {
 
   observables.forEach((observable, i) => {
     groupSubscription.add(observable.subscribe({
-      next,
-      error,
+      next, error,
       complete: () => complete(i + 1)
     }))
   })

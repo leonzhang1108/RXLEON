@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext } from '@utils'
 
 const reduce = context => (f, initVal) => Rx.Observable.create(observer => {
   let store = initVal || 0

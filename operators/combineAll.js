@@ -1,9 +1,10 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext } from '@utils'
 Rx.Observable.combineLatest = require('@observables/combineLatest')
 
 const combineAll = context => () => Rx.Observable.create(observer => {
   let observables = []
+  let groupSubscription = new Rx.GroupSubscription()
 
   const next = observable => {
     observables.push(observable)
@@ -14,11 +15,15 @@ const combineAll = context => () => Rx.Observable.create(observer => {
   }
 
   const complete = () => {
-    Rx.Observable.combineLatest(...observables)
+    const sub = Rx.Observable.combineLatest(...observables)
       .subscribe(observer)
+
+    groupSubscription.add(sub)
   }
 
-  return context.subscribe({ next, error, complete })
+  groupSubscription.add(context.subscribe({ next, error, complete }))
+
+  return groupSubscription
 })
 
 module.exports = bindContext(combineAll)

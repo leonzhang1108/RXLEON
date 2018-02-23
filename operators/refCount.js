@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext } from '@utils'
 
 const refCount = context => () => {
   let count = 1

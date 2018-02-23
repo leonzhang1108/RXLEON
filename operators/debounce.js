@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext, bindUnsubscribe } from '@utils'
 
 const debounce = context => f => Rx.Observable.create(observer => {
   let groupSubscription = new Rx.GroupSubscription()
@@ -7,12 +7,16 @@ const debounce = context => f => Rx.Observable.create(observer => {
 
   const doDebounce = func => {
     const observable = f()
+
     subscription.unsubscribe()
-    subscription = observable.subscribe({
-      next: x => observer.next(x),
-      error: e => observer.error(e),
+
+    const sub = observable.subscribe({
+      next: observer.next,
+      error: observer.error,
       complete: func
     })
+
+    bindUnsubscribe(subscription, sub)
   }
 
   const next = x => {

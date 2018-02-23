@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext, bindUnsubscribe } from '@utils'
 
 const retry = context => initCount => Rx.Observable.create(observer => {
   let count = initCount
@@ -12,7 +12,8 @@ const retry = context => initCount => Rx.Observable.create(observer => {
   const error = e => {
     if (--count !== 0) {
       subscription.unsubscribe()
-      subscription = context.subscribe({ next, error, complete })
+      const sub = context.subscribe({ next, error, complete })
+      bindUnsubscribe(subscription, sub)
     } else {
       observer.error(e)
       observer.complete()
@@ -23,7 +24,9 @@ const retry = context => initCount => Rx.Observable.create(observer => {
     observer.complete()
   }
 
-  subscription = context.subscribe({ next, error, complete })
+  const initSub = context.subscribe({ next, error, complete })
+
+  bindUnsubscribe(subscription, initSub)
 
   return subscription
 })

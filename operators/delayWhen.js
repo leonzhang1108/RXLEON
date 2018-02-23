@@ -1,24 +1,27 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext, bindUnsubscribe } from '@utils'
 
 const delayWhen = context => f => Rx.Observable.create(observer => {
   let observable
 
-  let subscription
+  let subscription = new Rx.Subscription()
+
+  const error = observer.error
 
   const next = x => {
     observable = f(x)
-    subscription && subscription.unsubscribe()
-    subscription = observable.subscribe({
-      next,
-      error,
+
+    subscription.unsubscribe()
+
+    const sub = observable.subscribe({
+      next, error,
       complete: () => {
         context.subscribe(observer)
       }
     })
-  }
 
-  const error = observer.error
+    bindUnsubscribe(subscription, sub)
+  }
 
   const complete = () => {
     subscription.unsubscribe()

@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext, bindUnsubscribe } from '@utils'
 
 const throttle = context => f => Rx.Observable.create(observer => {
   let groupSubscription = new Rx.GroupSubscription()
@@ -26,15 +26,15 @@ const throttle = context => f => Rx.Observable.create(observer => {
 
     const observable = f(x)
 
-    subscription = observable.subscribe({
+    const sub = observable.subscribe({
       next: x => {
         subscription.unsubscribe()
-
         Rx.Scheduler.async(() => { onOff = true })
       },
-      error,
-      complete
+      error, complete
     })
+
+    bindUnsubscribe(subscription, sub)
   }
 
   groupSubscription.add(subscription)

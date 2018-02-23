@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext, bindUnsubscribe } from '@utils'
 
 const concatAll = context => () => Rx.Observable.create(observer => {
   let subscription
@@ -11,7 +11,11 @@ const concatAll = context => () => Rx.Observable.create(observer => {
   }
 
   const concatSubscribe = observable => {
-    subscription = observable.subscribe({
+    if (!subscription) subscription = new Rx.Subscription()
+
+    subscription.unsubscribe()
+
+    const sub = observable.subscribe({
       next: observer.next,
       error,
       complete: () => {
@@ -20,6 +24,8 @@ const concatAll = context => () => Rx.Observable.create(observer => {
           : observer.complete()
       }
     })
+
+    bindUnsubscribe(subscription, sub)
   }
 
   const next = observable => {

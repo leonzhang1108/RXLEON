@@ -1,7 +1,13 @@
 import Rx from 'rxjs'
+import { bindUnsubscribe } from '@utils'
 
 module.exports = (...observables) => Rx.Observable.create(observer => {
-  let innerSubscription
+  let innerSubscription = new Rx.Subscription()
+
+  const bindSubscription = () => {
+    const subscription = observables.shift().subscribe({ next, error, complete })
+    bindUnsubscribe(innerSubscription, subscription)
+  }
 
   const next = x => {
     observer.next(x)
@@ -12,14 +18,12 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
   }
 
   const complete = () => {
-    if (observables.length) {
-      observables.shift().subscribe({ next, error, complete })
-    } else {
-      observer.complete()
-    }
+    observables.length
+      ? bindSubscription()
+      : observer.complete()
   }
 
-  innerSubscription = observables.shift().subscribe({ next, error, complete })
+  bindSubscription()
 
   return innerSubscription
 })

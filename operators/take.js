@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext } from '@utils'
 
 const take = context => max => Rx.Observable.create(observer => {
   let taken = 0

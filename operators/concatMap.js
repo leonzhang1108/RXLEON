@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext, bindUnsubscribe } from '@utils'
 
 const concatMap = context => f => Rx.Observable.create(observer => {
   let observables = []
@@ -17,7 +17,7 @@ const concatMap = context => f => Rx.Observable.create(observer => {
 
   const concatSubscribe = observable => {
     subscription.unsubscribe()
-    subscription = observable.subscribe({
+    const sub = observable.subscribe({
       next: observer.next,
       error,
       complete: () => {
@@ -26,6 +26,7 @@ const concatMap = context => f => Rx.Observable.create(observer => {
           : observer.complete()
       }
     })
+    bindUnsubscribe(subscription, sub)
   }
 
   const complete = () => {

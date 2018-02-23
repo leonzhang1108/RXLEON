@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext, bindUnsubscribe } from '@utils'
 
 const switchMap = context => f => Rx.Observable.create(observer => {
   const innerSubscription = new Rx.Subscription()
@@ -16,7 +16,10 @@ const switchMap = context => f => Rx.Observable.create(observer => {
       }
     }
     innerSubscription.unsubscribe()
-    innerSubscription.unsubscribe = innerObservable.subscribe(innerObserver).unsubscribe
+    
+    const innerSub = innerObservable.subscribe(innerObserver)
+
+    bindUnsubscribe(innerSubscription, innerSub)
   }
 
   const error = e => {

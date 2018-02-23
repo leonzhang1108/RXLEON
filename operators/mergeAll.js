@@ -1,5 +1,5 @@
 import Rx from 'rxjs'
-import { bindContext } from './util.js'
+import { bindContext, bindUnsubscribe } from '@utils'
 
 const mergeAll = context => () => Rx.Observable.create(observer => {
   let active = 0
@@ -16,11 +16,13 @@ const mergeAll = context => () => Rx.Observable.create(observer => {
 
   const next = observable => {
     active++
-    subscription = observable.subscribe({
+    const sub = observable.subscribe({
       next: observer.next,
       error,
       complete
     })
+
+    bindUnsubscribe(subscription, sub)
   }
 
   groupSubscription.add(subscription)
