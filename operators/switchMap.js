@@ -16,7 +16,7 @@ const switchMap = context => f => Rx.Observable.create(observer => {
       }
     }
     innerSubscription.unsubscribe()
-    
+
     const innerSub = innerObservable.subscribe(innerObserver)
 
     bindUnsubscribe(innerSubscription, innerSub)

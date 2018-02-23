@@ -31,7 +31,8 @@ const throttle = context => f => Rx.Observable.create(observer => {
         subscription.unsubscribe()
         Rx.Scheduler.async(() => { onOff = true })
       },
-      error, complete
+      error,
+      complete
     })
 
     bindUnsubscribe(subscription, sub)
