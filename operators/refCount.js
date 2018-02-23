@@ -9,19 +9,15 @@ const refCount = subject => () => {
   const observable = Rx.Observable.create(observer => {
     count++
 
-    const sub = subject.subscribe({
-      next: observer.next,
-      error: observer.error,
-      complete: () => {
-        count--
-        observer.complete()
-      }
-    })
+    const sub = subject.subscribe(observer)
     
     return new Rx.Subscription(() => {
-      Rx.Scheduler.async(sub.unsubscribe)
-      // todooooooooo
-      subscription.unsubscribe()
+      Rx.Scheduler.async(() => {
+        if (sub.unsubscribe() && --count <= 0) {
+          subscription.unsubscribe()
+          console.log(subject)
+        }
+      })
     })
   })
 

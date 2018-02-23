@@ -9,56 +9,56 @@ Rx.Observable.prototype.refCount = require('@operators/refCount')
 Rx.Observable.prototype.multicast = require('@operators/multicast')
 
 describe('multicasting', () => {
-  it('multicast test', done => {
-    const expected = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4]
+  // it('multicast test', done => {
+  //   const expected = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4]
 
-    const source = Rx.Observable.interval(20).take(5)
+  //   const source = Rx.Observable.interval(20).take(5)
 
-    const multi = source.multicast(new Rx.Subject())
+  //   const multi = source.multicast(new Rx.Subject())
 
-    const next = x => assert.strictEqual(x, expected.shift())
-
-    const error = () => done('error should not be called')
-
-    const complete = done
-
-    multi.subscribe({ next, error, complete })
-
-    multi.subscribe({ next, error })
-
-    multi.connect()
-  })
-
-  // it('publish test', done => {
-  //   let expected = [
-  //     'first: 0',
-  //     'second: 0',
-  //     'first: 1',
-  //     'second: 1'
-  //   ]
-
-  //   const next = x => {
-  //     console.log(x)
-  //     // assert.strictEqual(x, expected.shift())
-  //   }
-
-  //   const source = Rx.Observable.interval(200)
-  //     .do(() => console.log('do something'))
-  //     .publish().refCount()
+  //   const next = x => assert.strictEqual(x, expected.shift())
 
   //   const error = () => done('error should not be called')
 
-  //   const complete = () => {}
+  //   const complete = done
 
-  //   const first = source.take(2).map(v => `first: ${v}`).subscribe({
-  //     next, error, complete
-  //   })
+  //   multi.subscribe({ next, error, complete })
 
-  //   const second = source.take(4).map(v => `second: ${v}`).subscribe({
-  //     next, error, complete
-  //   })
+  //   multi.subscribe({ next, error })
 
+  //   multi.connect()
   // })
+
+  it('publish test', done => {
+    let expected = [
+      'first: 0',
+      'second: 0',
+      'first: 1',
+      'second: 1'
+    ]
+
+    const next = x => {
+      console.log(x)
+      // assert.strictEqual(x, expected.shift())
+    }
+
+    const source = Rx.Observable.interval(200)
+      .do(() => console.log('do something'))
+      .publish().refCount()
+
+    const error = () => done('error should not be called')
+
+    const complete = () => {}
+
+    const first = source.take(4).map(v => `first: ${v}`).subscribe({
+      next, error, complete
+    })
+
+    const second = source.take(2).map(v => `second: ${v}`).subscribe({
+      next, error, complete
+    })
+
+  })
 
   // it('share test', done => {
 

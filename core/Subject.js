@@ -7,7 +7,9 @@ class Subject extends Observable {
       this.observers.push(observer)
       return new Subscription(() => {
         const index = this.observers.indexOf(observer)
-        if (index >= 0) this.observers.splice(index, 1)
+        const hasObserver = index >= 0
+        hasObserver && this.observers.splice(index, 1)
+        return hasObserver
       })
     })
   }

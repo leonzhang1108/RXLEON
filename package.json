@@ -4,7 +4,7 @@
   "description": "toy rx",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require babel-core/register --reporter mochawesome",
+    "test": "mocha --require babel-core/register ./test/multicasting",
     "lint": "eslint --fix ."
   },
   "keywords": [
