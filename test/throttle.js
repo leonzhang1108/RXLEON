@@ -1,4 +1,4 @@
-import assert from 'assert'
+import { expect } from 'chai'
 import Rx from 'rxjs'
 Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.prototype.take = require('@operators/take')
@@ -14,7 +14,7 @@ describe('throttle', () => {
       .take(3)
       .subscribe({
         next: x => {
-          assert.strictEqual(x, expected.shift())
+          expect(x).to.be.closeTo(expected.shift(), 2)
         },
         error: () => done('error should not be called'),
         complete: done
@@ -28,7 +28,7 @@ describe('throttle', () => {
       .take(3)
       .subscribe({
         next: x => {
-          assert.strictEqual(x, expected.shift())
+          expect(x).to.be.closeTo(expected.shift(), 2)
         },
         error: () => done('error should not be called'),
         complete: done
