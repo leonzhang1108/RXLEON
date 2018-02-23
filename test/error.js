@@ -59,10 +59,8 @@ describe('error', () => {
     }).retryWhen(errors =>
       errors
         .do(val => console.log(`Value ${val} was too high!`))
-        .delay(200)
-        // .delayWhen(() => Rx.Observable.timer(1000))
-      , 2
-    ).subscribe({
+        .delay(20)
+    ).take(6).subscribe({
       next: x => {
         assert.strictEqual(x, expected.shift())
       },
