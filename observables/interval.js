@@ -5,5 +5,7 @@ module.exports = period => Rx.Observable.create(observer => {
 
   const timeout = setInterval(() => observer.next(i++), period)
 
-  return new Rx.Subscription(() => clearInterval(timeout))
+  return new Rx.Subscription(() => {
+    clearInterval(timeout)
+  })
 })

@@ -9,7 +9,7 @@ const buffer = context => observable => Rx.Observable.create(observer => {
     next: x => {
       bufferList.push(x)
     },
-    error: e => observer.error(e),
+    error: observer.error,
     complete: () => observer.complete()
   })
 
@@ -18,7 +18,7 @@ const buffer = context => observable => Rx.Observable.create(observer => {
       observer.next(bufferList)
       bufferList = []
     },
-    error: e => observer.error(e),
+    error: observer.error,
     complete: () => observer.complete()
   })
 

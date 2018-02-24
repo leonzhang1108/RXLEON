@@ -7,13 +7,9 @@ const doOperator = context => f => Rx.Observable.create(observer => {
     observer.next(x)
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   return context.subscribe({ next, error, complete })
 })

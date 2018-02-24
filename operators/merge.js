@@ -5,9 +5,9 @@ const merge = context => (...observables) => Rx.Observable.create(observer => {
   let groupSubscription = new Rx.GroupSubscription()
   let total = 1
 
-  const next = x => observer.next(x)
+  const next = observer.next
 
-  const error = e => observer.error(e)
+  const error = observer.error
 
   const complete = (i = 0) => {
     --total <= 0
