@@ -1,15 +1,15 @@
 import Rx from 'rxjs'
 import { bindContext } from '@utils'
 
-const refCount = subject => () => {
-  const subscription = subject.connect()
+const refCount = context => () => {
+  const subscription = context.connect()
 
   let count = 0
 
   const observable = Rx.Observable.create(observer => {
     count++
 
-    const sub = subject.subscribe(observer)
+    const sub = context.subscribe(observer)
 
     return new Rx.Subscription(() => {
       Rx.Scheduler.async(() => {
