@@ -9,9 +9,7 @@ const startWith = context => (...initVals) => Rx.Observable.create(observer => {
     observer.next(storedVals.shift())
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     storedVals.forEach(observer.next)

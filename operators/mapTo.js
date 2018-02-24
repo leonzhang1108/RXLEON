@@ -6,13 +6,9 @@ const mapTo = context => val => Rx.Observable.create(observer => {
     observer.next(val)
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   return context.subscribe({ next, error, complete })
 })

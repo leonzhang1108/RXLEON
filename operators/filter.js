@@ -6,13 +6,9 @@ const filter = context => f => Rx.Observable.create(observer => {
     f(x) && observer.next(x)
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   return context.subscribe({ next, error, complete })
 })

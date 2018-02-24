@@ -9,13 +9,9 @@ const take = context => max => Rx.Observable.create(observer => {
     ++taken === max && observer.complete()
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   return context.subscribe({ next, error, complete })
 })

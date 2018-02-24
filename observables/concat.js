@@ -9,13 +9,9 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
     bindUnsubscribe(innerSubscription, subscription)
   }
 
-  const next = x => {
-    observer.next(x)
-  }
+  const next = observer.next
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     observables.length

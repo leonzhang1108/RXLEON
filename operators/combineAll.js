@@ -10,9 +10,7 @@ const combineAll = context => () => Rx.Observable.create(observer => {
     observables.push(observable)
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     const sub = Rx.Observable.combineLatest(...observables)

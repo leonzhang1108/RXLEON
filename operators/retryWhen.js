@@ -8,9 +8,7 @@ const retryWhen = context => f => Rx.Observable.create(observer => {
 
   let innerSubscription = new Rx.Subscription()
 
-  const next = x => {
-    observer.next(x)
-  }
+  const next = observer.next
 
   const error = e => {
     const observable = f(e)
@@ -30,9 +28,7 @@ const retryWhen = context => f => Rx.Observable.create(observer => {
     bindUnsubscribe(innerSubscription, innerSub)
   }
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   subscription = context.subscribe({ next, error, complete })
 

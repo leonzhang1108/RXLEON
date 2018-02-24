@@ -11,9 +11,7 @@ const concatMap = context => f => Rx.Observable.create(observer => {
     observables.push(observable)
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const concatSubscribe = observable => {
     subscription.unsubscribe()

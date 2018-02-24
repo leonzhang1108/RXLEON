@@ -6,9 +6,7 @@ const concatAll = context => () => Rx.Observable.create(observer => {
   let groupSubscription = new Rx.GroupSubscription()
   let observableList = []
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const concatSubscribe = observable => {
     if (!subscription) subscription = new Rx.Subscription()

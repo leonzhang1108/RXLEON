@@ -7,13 +7,9 @@ const throttle = context => f => Rx.Observable.create(observer => {
   let onOff = true
   let latest
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   const next = x => {
     latest = x

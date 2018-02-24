@@ -3,7 +3,6 @@ import { bindContext } from '@utils'
 
 const refCount = context => () => {
   const subscription = context.connect()
-  console.log(subscription.unsubscribe.toString())
 
   let count = 0
 

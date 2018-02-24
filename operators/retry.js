@@ -5,9 +5,7 @@ const retry = context => initCount => Rx.Observable.create(observer => {
   let count = initCount
   let subscription = new Rx.Subscription()
 
-  const next = x => {
-    observer.next(x)
-  }
+  const next = observer.next
 
   const error = e => {
     if (--count !== 0) {
@@ -20,9 +18,7 @@ const retry = context => initCount => Rx.Observable.create(observer => {
     }
   }
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   const initSub = context.subscribe({ next, error, complete })
 

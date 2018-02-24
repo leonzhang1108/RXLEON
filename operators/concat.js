@@ -4,13 +4,9 @@ import { bindContext, bindUnsubscribe } from '@utils'
 const concat = context => observable => Rx.Observable.create(observer => {
   let subscription = new Rx.Subscription()
 
-  const next = x => {
-    observer.next(x)
-  }
+  const next = observer.next
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     const sub = observable.subscribe(observer)

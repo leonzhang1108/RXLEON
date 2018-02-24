@@ -9,13 +9,9 @@ const scan = context => (f, initVal) => Rx.Observable.create(observer => {
     observer.next(store)
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   return context.subscribe({ next, error, complete })
 })

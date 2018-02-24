@@ -18,9 +18,7 @@ const flatMap = context => f => Rx.Observable.create(observer => {
     groupSubscription.add(observable.subscribe(innerObserver))
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     --active === 0 && observer.complete()

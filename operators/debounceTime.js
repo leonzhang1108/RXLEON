@@ -13,9 +13,7 @@ const debounceTime = context => time => Rx.Observable.create(observer => {
     doDebouceTime(() => observer.next(x))
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     doDebouceTime(observer.complete)

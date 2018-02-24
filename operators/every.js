@@ -13,9 +13,7 @@ const every = context => f => Rx.Observable.create(observer => {
     subscription.unsubscribe()
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     y && observer.next(y)

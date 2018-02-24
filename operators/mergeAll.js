@@ -6,9 +6,7 @@ const mergeAll = context => () => Rx.Observable.create(observer => {
   let subscription = new Rx.Subscription()
   let groupSubscription = new Rx.GroupSubscription()
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     --active <= 0 && observer.complete()

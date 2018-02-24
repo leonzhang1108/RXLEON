@@ -12,13 +12,9 @@ const pairwise = context => length => Rx.Observable.create(observer => {
     pair.shift()
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   return context.subscribe({ next, error, complete })
 })

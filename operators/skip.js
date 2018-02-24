@@ -8,13 +8,9 @@ const skip = context => max => Rx.Observable.create(observer => {
     skipped >= max ? observer.next(x) : skipped++
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   return context.subscribe({ next, error, complete })
 })

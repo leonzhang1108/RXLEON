@@ -5,9 +5,7 @@ const catchOperator = context => f => Rx.Observable.create(observer => {
   let subscription = new Rx.Subscription()
   let groupSubscription = new Rx.GroupSubscription()
 
-  const next = x => {
-    observer.next(x)
-  }
+  const next = observer.next
 
   const error = e => {
     const observable = f(e)
@@ -20,9 +18,7 @@ const catchOperator = context => f => Rx.Observable.create(observer => {
     bindUnsubscribe(subscription, sub)
   }
 
-  const complete = () => {
-    observer.complete()
-  }
+  const complete = observer.complete
 
   groupSubscription.add(subscription)
   groupSubscription.add(context.subscribe({ next, error, complete }))

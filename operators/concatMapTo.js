@@ -31,9 +31,7 @@ const concatMapTo = context => observable => Rx.Observable.create(observer => {
     }
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   groupSubscription.add(subscription)
 

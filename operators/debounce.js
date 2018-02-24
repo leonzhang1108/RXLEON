@@ -23,9 +23,7 @@ const debounce = context => f => Rx.Observable.create(observer => {
     doDebounce(() => observer.next(x))
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     doDebounce(observer.complete)

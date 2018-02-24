@@ -8,9 +8,7 @@ const reduce = context => (f, initVal) => Rx.Observable.create(observer => {
     store = f(store, x)
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     observer.next(store)

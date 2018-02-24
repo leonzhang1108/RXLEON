@@ -22,9 +22,7 @@ const switchMap = context => f => Rx.Observable.create(observer => {
     bindUnsubscribe(innerSubscription, innerSub)
   }
 
-  const error = e => {
-    observer.error(e)
-  }
+  const error = observer.error
 
   const complete = () => {
     --active <= 0 && observer.complete()
