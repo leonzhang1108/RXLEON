@@ -1,5 +1,8 @@
 # RXLEON
 RXRXRX
 
-todo:
+- yarn
+- npm test
+
+## todo
 > delayWhen 加参数

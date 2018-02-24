@@ -9,25 +9,25 @@ Rx.Observable.prototype.refCount = require('@operators/refCount')
 Rx.Observable.prototype.multicast = require('@operators/multicast')
 
 describe('multicasting', () => {
-  // it('multicast test', done => {
-  //   const expected = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4]
+  it('multicast test', done => {
+    const expected = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4]
 
-  //   const source = Rx.Observable.interval(20).take(5)
+    const source = Rx.Observable.interval(20).take(5)
 
-  //   const multi = source.multicast(new Rx.Subject())
+    const multi = source.multicast(new Rx.Subject())
 
-  //   const next = x => assert.strictEqual(x, expected.shift())
+    const next = x => assert.strictEqual(x, expected.shift())
 
-  //   const error = () => done('error should not be called')
+    const error = () => done('error should not be called')
 
-  //   const complete = done
+    const complete = done
 
-  //   multi.subscribe({ next, error, complete })
+    multi.subscribe({ next, error, complete })
 
-  //   multi.subscribe({ next, error })
+    multi.subscribe({ next, error })
 
-  //   multi.connect()
-  // })
+    multi.connect()
+  })
 
   it('publish test', done => {
     let expected = [
@@ -57,7 +57,6 @@ describe('multicasting', () => {
     const second = source.take(2).map(v => `second: ${v}`).subscribe({
       next, error, complete
     })
-
   })
 
   // it('share test', done => {
