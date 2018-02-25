@@ -1,9 +1,12 @@
 import assert from 'assert'
 import Rx from 'rxjs'
+Rx.Observable.timer = require('@observables/timer')
 Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.prototype.do = require('@operators/do')
 Rx.Observable.prototype.map = require('@operators/map')
 Rx.Observable.prototype.take = require('@operators/take')
+Rx.Observable.prototype.mapTo = require('@operators/mapTo')
+Rx.Observable.prototype.share = require('@operators/share')
 Rx.Observable.prototype.publish = require('@operators/publish')
 Rx.Observable.prototype.refCount = require('@operators/refCount')
 Rx.Observable.prototype.multicast = require('@operators/multicast')
@@ -20,11 +23,11 @@ describe('multicasting', () => {
 
     const error = () => done('error should not be called')
 
-    const complete = done
+    const complete = () => expected.length === 0 && done()
 
     multi.subscribe({ next, error, complete })
 
-    multi.subscribe({ next, error })
+    multi.subscribe({ next, error, complete })
 
     multi.connect()
   })
@@ -47,9 +50,7 @@ describe('multicasting', () => {
 
     const error = () => done('error should not be called')
 
-    const complete = () => {
-      expected.length === 0 && done()
-    }
+    const complete = () => expected.length === 0 && done()
 
     source.take(4).map(v => `first: ${v}`).subscribe({
       next, error, complete
@@ -60,19 +61,24 @@ describe('multicasting', () => {
     })
   })
 
-  // it('share test', done => {
+  it('share test', done => {
+    let expected = [
+      'ALL HAiL JLA',
+      'ALL HAiL JLA'
+    ]
 
-  //   const createObserver = tag => ({
-  //     next: x => `${tag} ${x}`,
-  //     error: () => done('error should not be called'),
-  //     complete: done
-  //   })
+    const source = Rx.Observable.timer(100)
+      .do(() => console.log('do something'))
+      .mapTo('ALL HAiL JLA').share()
 
-  //   const published = Rx.Observable.interval(10).take(2)
-  //     .do(() => console.log('side effect'))
-  //     .publish().refCount()
+    const next = x => assert.strictEqual(x, expected.shift())
 
-  //   published.subscribe(createObserver('SourceA'))
-  //   published.subscribe(createObserver('SourceB'))
-  // })
+    const error = () => done('error should not be called')
+
+    const complete = () => expected.length === 0 && done()
+
+    source.subscribe({ next, error, complete })
+
+    source.subscribe({ next, error, complete })
+  })
 })

@@ -17,7 +17,7 @@ const delayWhen = context => f => Rx.Observable.create(observer => {
       next,
       error,
       complete: () => {
-        context.subscribe(observer)
+        context.subscribe({ next, error, complete })
       }
     })
 

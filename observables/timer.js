@@ -1,4 +1,5 @@
 import Rx from 'rxjs'
+import { bindUnsubscribe } from '@utils'
 
 module.exports = (...vals) => {
   let i = 0
@@ -33,13 +34,16 @@ module.exports = (...vals) => {
   } else {
     return Rx.Observable.create(observer => {
       let subscription = new Rx.Subscription()
-
+      
       const timeout = setTimeout(() => {
+        observer.next(i)
         subscription.unsubscribe()
         observer.complete()
       }, delay)
 
-      subscription = new Rx.Subscription(() => clearTimeout(timeout))
+      const sub = new Rx.Subscription(() => clearTimeout(timeout))
+      bindUnsubscribe(subscription, sub)
+
       return subscription
     })
   }
