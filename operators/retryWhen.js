@@ -30,7 +30,8 @@ const retryWhen = context => f => Rx.Observable.create(observer => {
 
   const complete = observer.complete
 
-  subscription = context.subscribe({ next, error, complete })
+  const sub = context.subscribe({ next, error, complete })
+  bindUnsubscribe(subscription, sub)
 
   groupSubscription.add(subscription)
 

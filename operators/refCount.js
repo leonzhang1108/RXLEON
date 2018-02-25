@@ -13,9 +13,7 @@ const refCount = context => () => {
 
     return new Rx.Subscription(() => {
       Rx.Scheduler.async(() => {
-        if (sub.unsubscribe() && --count <= 0) {
-          subscription.unsubscribe()
-        }
+        sub.unsubscribe() && --count <= 0 && subscription.unsubscribe()
       })
     })
   })

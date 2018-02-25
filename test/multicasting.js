@@ -29,35 +29,36 @@ describe('multicasting', () => {
     multi.connect()
   })
 
-  // it('publish test', done => {
-  //   let expected = [
-  //     'first: 0',
-  //     'second: 0',
-  //     'first: 1',
-  //     'second: 1'
-  //   ]
+  it('publish test', done => {
+    let expected = [
+      'first: 0',
+      'second: 0',
+      'first: 1',
+      'second: 1',
+      'first: 2',
+      'first: 3'
+    ]
 
-  //   const next = x => {
-  //     console.log(x)
-  //     // assert.strictEqual(x, expected.shift())
-  //   }
+    const next = x => assert.strictEqual(x, expected.shift())
 
-  //   const source = Rx.Observable.interval(200)
-  //     .do(() => console.log('do something'))
-  //     .publish().refCount()
+    const source = Rx.Observable.interval(20)
+      .do(() => console.log('do something'))
+      .publish().refCount()
 
-  //   const error = () => done('error should not be called')
+    const error = () => done('error should not be called')
 
-  //   const complete = () => {}
+    const complete = () => {
+      expected.length === 0 && done()
+    }
 
-  //   const first = source.take(4).map(v => `first: ${v}`).subscribe({
-  //     next, error, complete
-  //   })
+    source.take(4).map(v => `first: ${v}`).subscribe({
+      next, error, complete
+    })
 
-  //   const second = source.take(2).map(v => `second: ${v}`).subscribe({
-  //     next, error, complete
-  //   })
-  // })
+    source.take(2).map(v => `second: ${v}`).subscribe({
+      next, error, complete
+    })
+  })
 
   // it('share test', done => {
 
