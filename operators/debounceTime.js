@@ -9,15 +9,11 @@ const debounceTime = context => time => Rx.Observable.create(observer => {
     timeout = setTimeout(f, time)
   }
 
-  const next = x => {
-    doDebouceTime(() => observer.next(x))
-  }
+  const next = x => doDebouceTime(() => observer.next(x))
 
   const error = observer.error
 
-  const complete = () => {
-    doDebouceTime(observer.complete)
-  }
+  const complete = () => setTimeout(observer.complete, time)
 
   const subscription = context.subscribe({ next, error, complete })
 
