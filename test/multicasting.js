@@ -45,7 +45,7 @@ describe('multicasting', () => {
     const next = x => assert.strictEqual(x, expected.shift())
 
     const source = Rx.Observable.interval(20)
-      .do(() => console.log('do something'))
+      .do(() => console.log('ironman sucks'))
       .publish().refCount()
 
     const error = () => done('error should not be called')
@@ -68,7 +68,7 @@ describe('multicasting', () => {
     ]
 
     const source = Rx.Observable.timer(100)
-      .do(() => console.log('do something'))
+      .do(() => console.log('ironman sucks'))
       .mapTo('ALL HAiL JLA').share()
 
     const next = x => assert.strictEqual(x, expected.shift())

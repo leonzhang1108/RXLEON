@@ -34,7 +34,7 @@ module.exports = (...vals) => {
   } else {
     return Rx.Observable.create(observer => {
       let subscription = new Rx.Subscription()
-      
+
       const timeout = setTimeout(() => {
         observer.next(i)
         subscription.unsubscribe()
