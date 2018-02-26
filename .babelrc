@@ -8,5 +8,12 @@
       { "src": "./operators", "expose": "@operators" },
       { "src": "./observables", "expose": "@observables" }
     ]]
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
 }

@@ -52,13 +52,9 @@ describe('multicasting', () => {
 
     const complete = () => expected.length === 0 && done()
 
-    source.take(4).map(v => `first: ${v}`).subscribe({
-      next, error, complete
-    })
+    source.take(4).map(v => `first: ${v}`).subscribe({ next, error, complete })
 
-    source.take(2).map(v => `second: ${v}`).subscribe({
-      next, error, complete
-    })
+    source.take(2).map(v => `second: ${v}`).subscribe({ next, error, complete })
   })
 
   it('share test', done => {
