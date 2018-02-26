@@ -17,7 +17,7 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
         : groupSubscription.unsubscribeIndex(i)
     }
 
-    groupSubscription.add(observable.subscribe({next, error, complete}))
+    groupSubscription.add(observable.subscribe({ next, error, complete }))
   })
 
   return groupSubscription

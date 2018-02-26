@@ -7,11 +7,10 @@ const partition = context => f => {
   let falseList = []
 
   context.subscribe({
-    next: x => {
+    next: x => 
       f(x)
         ? trueList.push(x)
         : falseList.push(x)
-    }
   })
 
   return [
