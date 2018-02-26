@@ -15,5 +15,7 @@ module.exports = {
 
   isString: p => getType(p) === `[object String]`,
 
-  isArray: p => getType(p) === `[object Array]`
+  isArray: p => getType(p) === `[object Array]`,
+
+  isNull: p => p === undefined
 }
