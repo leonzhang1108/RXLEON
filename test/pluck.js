@@ -7,13 +7,15 @@ describe('pluck', () => {
   it('pluck test', done => {
     let expected = ['Batman', 'Deathstroke']
 
-    Rx.Observable.from([{
+    const data = [{
       name: 'Bruce Wayne',
       alias: 'Batman'
     }, {
       name: 'Slade Wilson',
       alias: 'Deathstroke'
-    }]).plunk('alias').subscribe({
+    }]
+
+    Rx.Observable.from(data).plunk('alias').subscribe({
       next: x => {
         assert.strictEqual(x, expected.shift())
       },

@@ -5,8 +5,8 @@ module.exports = {
     return operator(this)(...v)
   },
 
-  bindUnsubscribe: (originSubscription, newSubscription) => {
-    originSubscription.unsubscribe = newSubscription.unsubscribe.bind(newSubscription)
+  bindUnsubscribe: (oriSub, newSub) => {
+    oriSub.unsubscribe = newSub.unsubscribe.bind(newSub)
   },
 
   getType,
