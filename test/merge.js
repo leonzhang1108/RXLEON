@@ -28,8 +28,8 @@ describe('merge', () => {
 
   it('merge static test', done => {
     const expected = [1, 1, 1, 2, 1, 2]
-    const first = Rx.Observable.interval(10).take(4)
-    const second = Rx.Observable.interval(35)
+    const first = Rx.Observable.interval(20).take(4)
+    const second = Rx.Observable.interval(70)
 
     Rx.Observable.merge(
       first.mapTo(1),

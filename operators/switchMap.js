@@ -11,9 +11,7 @@ const switchMap = context => f => Rx.Observable.create(observer => {
     const innerObserver = {
       next: v => observer.next(v),
       error: observer.error,
-      complete: () => {
-        --active <= 0 && observer.complete()
-      }
+      complete: () => --active <= 0 && observer.complete()
     }
     innerSubscription.unsubscribe()
 

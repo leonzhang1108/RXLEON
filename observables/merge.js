@@ -4,12 +4,11 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
   let groupSubscription = new Rx.GroupSubscription()
   let total = 0
 
+  const next = observer.next
+  const error = observer.error
+
   observables.forEach((observable, i) => {
     total++
-
-    const next = observer.next
-
-    const error = observer.error
 
     const complete = () => {
       --total <= 0
