@@ -5,12 +5,9 @@ Rx.Observable.prototype.merge = require('@operators/merge')
 const expand = context => f => Rx.Observable.create(observer => {
   let subscription = new Rx.Subscription()
 
-  const error = observer.error
+  let count = 5
 
-  const complete = () => {
-    subscription.unsubscribe()
-    observer.complete()
-  }
+  const error = observer.error
 
   const doSubscribe = x => {
     observer.next(x)
@@ -19,7 +16,10 @@ const expand = context => f => Rx.Observable.create(observer => {
 
     const sub = observable.subscribe({
       next: x => {
-        doSubscribe(x)
+        Rx.Scheduler.async(
+          () => --count > 0 && doSubscribe(x)
+        )
+         
       },
       error
     })
