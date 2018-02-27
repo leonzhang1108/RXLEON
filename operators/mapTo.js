@@ -2,9 +2,7 @@ import Rx from 'rxjs'
 import { bindContext } from '@utils'
 
 const mapTo = context => val => Rx.Observable.create(observer => {
-  const next = () => {
-    observer.next(val)
-  }
+  const next = () => observer.next(val)
 
   const error = observer.error
 

@@ -4,9 +4,7 @@ import { bindContext } from '@utils'
 const skip = context => max => Rx.Observable.create(observer => {
   let skipped = 0
 
-  const next = x => {
-    skipped >= max ? observer.next(x) : skipped++
-  }
+  const next = x => skipped >= max ? observer.next(x) : skipped++
 
   const error = observer.error
 

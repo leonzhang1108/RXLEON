@@ -1,11 +1,9 @@
 import Rx from 'rxjs'
 import { bindContext, bindUnsubscribe } from '@utils'
+Rx.Observable.prototype.merge = require('@operators/merge')
 
 const expand = context => f => Rx.Observable.create(observer => {
-
   let subscription = new Rx.Subscription()
-
-  let done = false
 
   const error = observer.error
 
@@ -21,10 +19,9 @@ const expand = context => f => Rx.Observable.create(observer => {
 
     const sub = observable.subscribe({
       next: x => {
-        
         doSubscribe(x)
       },
-      error, complete
+      error
     })
 
     bindUnsubscribe(subscription, sub)
@@ -32,7 +29,7 @@ const expand = context => f => Rx.Observable.create(observer => {
 
   const next = doSubscribe
 
-  return context.subscribe({ next, error, complete })
+  return context.subscribe({ next, error })
 })
 
 module.exports = bindContext(expand)
