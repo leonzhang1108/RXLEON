@@ -15,12 +15,7 @@ const expand = context => f => Rx.Observable.create(observer => {
     const observable = f(x)
 
     const sub = observable.subscribe({
-      next: x => {
-        Rx.Scheduler.async(
-          () => --count > 0 && doSubscribe(x)
-        )
-         
-      },
+      next: x => Rx.Scheduler.async(() => --count > 0 && doSubscribe(x)),
       error
     })
 
