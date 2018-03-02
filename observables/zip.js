@@ -18,9 +18,7 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
         }
       },
       error: observer.error,
-      complete: () => {
-        launched && observer.complete()
-      }
+      complete: () => launched && observer.complete()
     })
 
     groupSubscription.add(subscription)

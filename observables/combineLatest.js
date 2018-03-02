@@ -1,10 +1,11 @@
 import Rx from 'rxjs'
+import { isFunction } from '@utils'
 
 module.exports = (...observables) => Rx.Observable.create(observer => {
   let func
   let active = 0
 
-  if (typeof observables[observables.length - 1] === 'function') {
+  if (isFunction(observables[observables.length - 1])) {
     func = observables.pop()
   }
 
@@ -22,7 +23,7 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
       gotValue[index] = true
 
       // if has value, print
-      if (gotValue.every(x => x === true)) {
+      if (gotValue.every(x => !!x)) {
         func
           ? observer.next(func(...vals))
           : observer.next(vals)
