@@ -9,7 +9,7 @@ const switchMap = context => f => Rx.Observable.create(observer => {
     const innerObservable = f(x)
 
     const innerObserver = {
-      next: v => observer.next(v),
+      next: observer.next,
       error: observer.error,
       complete: () => --active <= 0 && observer.complete()
     }

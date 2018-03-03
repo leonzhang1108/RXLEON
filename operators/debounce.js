@@ -19,15 +19,11 @@ const debounce = context => f => Rx.Observable.create(observer => {
     bindUnsubscribe(subscription, sub)
   }
 
-  const next = x => {
-    doDebounce(() => observer.next(x))
-  }
+  const next = x => doDebounce(() => observer.next(x))
 
   const error = observer.error
 
-  const complete = () => {
-    doDebounce(observer.complete)
-  }
+  const complete = () => doDebounce(observer.complete)
 
   groupSubscription.add(subscription)
   groupSubscription.add(context.subscribe({ next, error, complete }))

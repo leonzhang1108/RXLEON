@@ -10,7 +10,7 @@ const buffer = context => observable => Rx.Observable.create(observer => {
       bufferList.push(x)
     },
     error: observer.error,
-    complete: () => observer.complete()
+    complete: observer.complete
   })
 
   const bufferSubscription = observable.subscribe({

@@ -6,9 +6,8 @@ const combineAll = context => () => Rx.Observable.create(observer => {
   let observables = []
   let groupSubscription = new Rx.GroupSubscription()
 
-  const next = observable => {
+  const next = observable =>
     observables.push(observable)
-  }
 
   const error = observer.error
 
