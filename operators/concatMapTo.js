@@ -12,7 +12,7 @@ const concatMapTo = context => observable => Rx.Observable.create(observer => {
     const sub = ob.subscribe({
       next: observer.next,
       error,
-      complete: () => 
+      complete: () =>
         --active <= 0
           ? observer.complete()
           : concatSubscribe(ob)

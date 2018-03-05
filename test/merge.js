@@ -47,10 +47,10 @@ describe('merge', () => {
     let expected = [0, 1, 2, 0, 1, 2, 0, 1, 2]
 
     Rx.Observable.interval(80)
-      .take(3)
       .mapTo(0)
       .map(x => Rx.Observable.interval(15).take(3))
       .mergeAll()
+      .take(3)
       .subscribe({
         next: x => {
           assert.strictEqual(x, expected.shift())

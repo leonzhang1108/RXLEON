@@ -18,7 +18,7 @@ const concatMap = context => f => Rx.Observable.create(observer => {
     const sub = observable.subscribe({
       next: observer.next,
       error,
-      complete: () => 
+      complete: () =>
         observables.length
           ? concatSubscribe(observables.shift())
           : observer.complete()

@@ -8,7 +8,7 @@ const mergeAll = context => () => Rx.Observable.create(observer => {
 
   const error = observer.error
 
-  const complete = () => --active <= 0 && observer.complete()
+  const complete = () => --active <= 0 && subscription.unsubscribe()
 
   const next = observable => {
     active++
