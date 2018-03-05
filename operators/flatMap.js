@@ -8,11 +8,9 @@ const flatMap = context => f => Rx.Observable.create(observer => {
   const next = x => {
     const observable = f(x)
     const innerObserver = {
-      next: y => observer.next(y),
+      next: observer.next,
       error: observer.error,
-      complete: () => {
-        --active === 0 && observer.complete()
-      }
+      complete: () => --active === 0 && observer.complete()
     }
     active++
     groupSubscription.add(observable.subscribe(innerObserver))
