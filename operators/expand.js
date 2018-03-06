@@ -1,6 +1,5 @@
 import Rx from 'rxjs'
 import { bindContext, bindUnsubscribe } from '@utils'
-Rx.Observable.prototype.merge = require('@operators/merge')
 
 const expand = context => f => Rx.Observable.create(observer => {
   let subscription = new Rx.Subscription()

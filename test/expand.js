@@ -8,6 +8,9 @@ Rx.Observable.prototype.expand = require('@operators/expand')
 describe('expand', () => {
   it('expand test', done => {
     console.log('expand does not accomplished, there are tricks in the source code')
+
+    let expected = [2, 3, 4, 5, 6]
+
     Rx.Observable.of(2)
       .expand(val => {
         console.log(`Passed value: ${val}`)
@@ -15,8 +18,7 @@ describe('expand', () => {
       }).take(5)
       .subscribe({
         next: x => {
-          console.log(x)
-          // assert.strictEqual(x, expected.shift())
+          assert.strictEqual(x, expected.shift())
         },
         error: () => done('error should not be called'),
         complete: done
