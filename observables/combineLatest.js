@@ -32,9 +32,7 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
 
     const error = observer.error
 
-    const complete = () => {
-      --active <= 0 && observer.complete()
-    }
+    const complete = () => --active <= 0 && observer.complete()
 
     groupSubscription.add(observable.subscribe({next, error, complete}))
   })
