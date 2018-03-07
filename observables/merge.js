@@ -10,11 +10,10 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
   observables.forEach((observable, i) => {
     total++
 
-    const complete = () => {
+    const complete = () => 
       --total <= 0
         ? observer.complete()
         : groupSubscription.unsubscribeIndex(i)
-    }
 
     groupSubscription.add(observable.subscribe({ next, error, complete }))
   })
