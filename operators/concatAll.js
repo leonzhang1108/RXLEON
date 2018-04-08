@@ -16,11 +16,10 @@ const concatAll = context => () => Rx.Observable.create(observer => {
     const sub = observable.subscribe({
       next: observer.next,
       error,
-      complete: () => {
+      complete: () =>
         observableList.length
           ? concatSubscribe(observableList.shift())
           : observer.complete()
-      }
     })
 
     bindUnsubscribe(subscription, sub)

@@ -9,7 +9,7 @@ const merge = context => (...observables) => Rx.Observable.create(observer => {
 
   const error = observer.error
 
-  const complete = (i = 0) => 
+  const complete = (i = 0) =>
     --total <= 0
       ? observer.complete()
       : groupSubscription.unsubscribeIndex(i)
