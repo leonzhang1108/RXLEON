@@ -1,13 +1,16 @@
 {
   "presets": ["env", "stage-0"],
   "plugins": [
-    ["module-alias", [
-      { "src": "./core", "expose": "rxjs" },
-      { "src": "./test", "expose": "@test" },
-      { "src": "./utils", "expose": "@utils" },
-      { "src": "./operators", "expose": "@operators" },
-      { "src": "./observables", "expose": "@observables" }
-    ]]
+    ["module-resolver", {
+      "root": ["./"],
+      "alias": {
+        "rxjs":"./core",
+        "@test":"./test",
+        "@utils":"./utils",
+        "@operators":"./operators",
+        "@observables":"./observables"
+     }
+    }]
   ],
   "env": {
     "test": {
