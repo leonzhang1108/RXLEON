@@ -9,12 +9,12 @@ class GroupSubscription {
 
   unsubscribe = () => {
     this.subscriptions.forEach(subscription => {
-      subscription.unsubscribe()
+      subscription && subscription.unsubscribe()
     })
   }
 
   unsubscribeIndex = i => {
-    this.subscriptions[i].unsubscribe()
+    this.subscriptions[i] && this.subscriptions[i].unsubscribe()
   }
 }
 
