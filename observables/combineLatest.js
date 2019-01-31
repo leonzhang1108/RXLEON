@@ -10,9 +10,9 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
   }
 
   // init, all undefined
-  const vals = observables.map(observable => undefined)
+  const vals = observables.map(() => undefined)
   // init, all false
-  const gotValue = observables.map(observable => false)
+  const gotValue = observables.map(() => false)
 
   const groupSubscription = new Rx.GroupSubscription()
 
@@ -34,7 +34,7 @@ module.exports = (...observables) => Rx.Observable.create(observer => {
 
     const complete = () => --active <= 0 && observer.complete()
 
-    groupSubscription.add(observable.subscribe({next, error, complete}))
+    groupSubscription.add(observable.subscribe({ next, error, complete }))
   })
 
   return groupSubscription

@@ -3,7 +3,7 @@ import Rx from 'rxjs'
 module.exports = (...observables) => Rx.Observable.create(observer => {
   let groupSubscription = new Rx.GroupSubscription()
   let doneLength = 0
-  let result = observables.map(observable => undefined)
+  let result = observables.map(() => undefined)
 
   observables.forEach((observable, i) => {
     const subscription = observable.subscribe({

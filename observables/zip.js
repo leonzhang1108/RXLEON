@@ -5,7 +5,7 @@ import Rx from 'rxjs'
 // 这会持续进行，直到至少一个内部 observable 完成。
 module.exports = (...observables) => Rx.Observable.create(observer => {
   let groupSubscription = new Rx.GroupSubscription()
-  let result = observables.map(observable => undefined)
+  let result = observables.map(() => undefined)
   let launched = false
 
   observables.forEach((observable, i) => {
