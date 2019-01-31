@@ -2,7 +2,7 @@ import Rx from 'rxjs'
 import { bindContext } from '@utils'
 
 const window = context => observable => Rx.Observable.create(observer => {
-  const next = x => observer.next(observable)
+  const next = () => observer.next(observable)
 
   const error = observer.error
 
