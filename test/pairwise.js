@@ -18,7 +18,7 @@ describe('pairwise', () => {
       .take(3)
       .subscribe({
         next: x => {
-          assert.deepEqual(x, expected.shift())
+          assert.deepStrictEqual(x, expected.shift())
         },
         error: () => done('error should not be called'),
         complete: done
@@ -38,7 +38,7 @@ describe('pairwise', () => {
       .take(3)
       .subscribe({
         next: x => {
-          assert.deepEqual(x, expected.shift())
+          assert.deepStrictEqual(x, expected.shift())
         },
         error: () => done('error should not be called'),
         complete: done

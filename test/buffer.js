@@ -21,7 +21,7 @@ describe('buffer', () => {
 
     interval.buffer(bufferBy).take(5).subscribe({
       next: x => {
-        assert.deepEqual(x, expected.shift())
+        assert.deepStrictEqual(x, expected.shift())
       },
       error: () => done('error should not be called'),
       complete: done

@@ -17,7 +17,7 @@ describe('zip', () => {
 
     Rx.Observable.zip(ob1, ob2).subscribe({
       next: x => {
-        assert.deepEqual(x, expected.shift())
+        assert.deepStrictEqual(x, expected.shift())
       },
       error: () => done('error should not be called'),
       complete: done

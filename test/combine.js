@@ -32,7 +32,7 @@ describe('combine', () => {
 
     combined.take(5).subscribe({
       next: x => {
-        assert.deepEqual(x, expected.shift())
+        assert.deepStrictEqual(x, expected.shift())
       },
       error: () => done('error should not be called'),
       complete: done
@@ -61,7 +61,7 @@ describe('combine', () => {
 
     combined.take(5).subscribe({
       next: x => {
-        assert.deepEqual(x, expected.shift())
+        assert.deepStrictEqual(x, expected.shift())
       },
       error: () => done('error should not be called'),
       complete: done
@@ -89,7 +89,7 @@ describe('combine', () => {
       .combineAll()
       .subscribe({
         next: x => {
-          assert.deepEqual(x, expected.shift())
+          assert.deepStrictEqual(x, expected.shift())
         },
         error: () => done('error should not be called'),
         complete: done

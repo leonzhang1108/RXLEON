@@ -8,7 +8,7 @@ describe('from', () => {
 
     Rx.Observable.from('leon').subscribe({
       next: x => {
-        assert.deepEqual(x, expected.shift())
+        assert.deepStrictEqual(x, expected.shift())
       },
       error: () => done('error should not be called'),
       complete: done
@@ -19,7 +19,7 @@ describe('from', () => {
 
     Rx.Observable.from(['leon', 'zhang']).subscribe({
       next: x => {
-        assert.deepEqual(x, expected.shift())
+        assert.deepStrictEqual(x, expected.shift())
       },
       error: () => done('error should not be called'),
       complete: done

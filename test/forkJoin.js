@@ -16,7 +16,7 @@ describe('forkJoin', () => {
       Rx.Observable.interval(10).take(10)
     ).subscribe({
       next: x => {
-        assert.deepEqual(x, ['Leon', 'Zhang', 0, 9])
+        assert.deepStrictEqual(x, ['Leon', 'Zhang', 0, 9])
       },
       error: () => done('error should not be called'),
       complete: done
