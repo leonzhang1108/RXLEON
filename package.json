@@ -11,7 +11,7 @@
     "lint": "eslint --fix ."
   },
   "keywords": [
-    "rxjs"
+    "toy-toy-rx"
   ],
   "files": [
     "dist"

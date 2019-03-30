@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 Rx.Observable.of = require('@observables/of')
 Rx.Observable.prototype.reduce = require('@operators/reduce')
 

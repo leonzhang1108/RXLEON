@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 
 module.exports = () => Rx.Observable.create(observer => {
   observer.next()

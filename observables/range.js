@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 
 module.exports = (...ranges) => Rx.Observable.create(observer => {
   const min = ranges[0]

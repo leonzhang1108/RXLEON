@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 import { bindContext } from '@utils'
 
 const doOperator = context => f => Rx.Observable.create(observer => {

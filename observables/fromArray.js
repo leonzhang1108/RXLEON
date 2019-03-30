@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 import { isArray } from '@utils'
 
 module.exports = array => Rx.Observable.create(observer => {

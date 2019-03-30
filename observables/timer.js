@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 import { bindUnsubscribe } from '@utils'
 
 module.exports = (...vals) => {

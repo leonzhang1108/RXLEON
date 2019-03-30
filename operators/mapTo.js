@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 import { bindContext } from '@utils'
 
 const mapTo = context => val => Rx.Observable.create(observer => {

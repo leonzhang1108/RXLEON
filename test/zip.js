@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 Rx.Observable.zip = require('@observables/zip')
 Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.prototype.take = require('@operators/take')

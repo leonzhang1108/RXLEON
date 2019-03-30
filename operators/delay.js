@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 import { bindContext } from '@utils'
 
 const delay = context => period => Rx.Observable.create(observer => {

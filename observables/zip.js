@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 
 // 订阅所有内部 observables，然后等待每个发出一个值。
 // 一旦发生这种情况，将发出具有相应索引的所有值。

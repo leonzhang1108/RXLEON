@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 import { bindContext } from '@utils'
 
 const distinctUntilChanged = context => () => Rx.Observable.create(observer => {

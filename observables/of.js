@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 import { isString } from '@utils'
 
 module.exports = (...vals) => Rx.Observable.create(observer => {

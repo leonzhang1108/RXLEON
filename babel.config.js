@@ -9,7 +9,7 @@ module.exports = function (api) {
         {
           root: ['./'],
           alias: {
-            rxjs: './core',
+            'toy-rx': './core',
             '@test': './test',
             '@utils': './utils',
             '@operators': './operators',

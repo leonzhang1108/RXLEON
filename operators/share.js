@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 import { bindContext } from '@utils'
 Rx.Observable.prototype.refCount = require('@operators/refCount')
 Rx.Observable.prototype.publish = require('@operators/publish')

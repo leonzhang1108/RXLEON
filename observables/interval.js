@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 
 module.exports = period => Rx.Observable.create(observer => {
   let i = 0

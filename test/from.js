@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 Rx.Observable.from = require('@observables/from')
 
 describe('from', () => {

@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 import { bindContext, isNull } from '@utils'
 
 const plunk = context => property => Rx.Observable.create(observer => {

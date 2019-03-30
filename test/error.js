@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 Rx.Observable.of = require('@observables/of')
 Rx.Observable.throw = require('@observables/throw')
 Rx.Observable.timer = require('@observables/timer')

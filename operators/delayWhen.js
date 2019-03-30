@@ -1,4 +1,4 @@
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 import { bindContext, bindUnsubscribe } from '@utils'
 
 const delayWhen = context => f => Rx.Observable.create(observer => {

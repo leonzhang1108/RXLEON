@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 Rx.Observable.fromArray = require('@observables/fromArray')
 Rx.Observable.prototype.distinct = require('@operators/distinct')
 Rx.Observable.prototype.distinctUntilChanged = require('@operators/distinctUntilChanged')

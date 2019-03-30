@@ -1,5 +1,5 @@
 import assert from 'assert'
-import Rx from 'rxjs'
+import Rx from 'toy-rx'
 Rx.Observable.empty = require('@observables/empty')
 Rx.Observable.interval = require('@observables/interval')
 Rx.Observable.forkJoin = require('@observables/forkJoin')
