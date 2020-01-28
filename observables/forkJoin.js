@@ -1,9 +1,9 @@
 import Rx from 'toy-rx'
 
 module.exports = (...observables) => Rx.Observable.create(observer => {
-  let groupSubscription = new Rx.GroupSubscription()
+  const groupSubscription = new Rx.GroupSubscription()
   let doneLength = 0
-  let result = observables.map(() => undefined)
+  const result = observables.map(() => undefined)
 
   observables.forEach((observable, i) => {
     const subscription = observable.subscribe({

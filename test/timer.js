@@ -15,7 +15,7 @@ describe('timer', () => {
   })
 
   it('timer two param test', done => {
-    let expected = [0, 1, 2, 3, 4]
+    const expected = [0, 1, 2, 3, 4]
 
     Rx.Observable.timer(20, 10).take(5).subscribe({
       next: x => {

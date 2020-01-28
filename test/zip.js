@@ -7,10 +7,10 @@ Rx.Observable.prototype.startWith = require('@operators/startWith')
 
 describe('zip', () => {
   it('zip test', done => {
-    let expected = [
-      [ 0, 0 ],
-      [ 1, 0 ],
-      [ 2, 0 ]
+    const expected = [
+      [0, 0],
+      [1, 0],
+      [2, 0]
     ]
     const ob1 = Rx.Observable.interval(50).take(3)
     const ob2 = Rx.Observable.interval(100).take(2)

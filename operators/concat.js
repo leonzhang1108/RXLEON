@@ -2,7 +2,7 @@ import Rx from 'toy-rx'
 import { bindContext, bindUnsubscribe } from '@utils'
 
 const concat = context => observable => Rx.Observable.create(observer => {
-  let subscription = new Rx.Subscription()
+  const subscription = new Rx.Subscription()
 
   const next = observer.next
 

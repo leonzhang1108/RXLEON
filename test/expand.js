@@ -9,7 +9,7 @@ describe('expand', () => {
   it('expand test', done => {
     console.log('expand does not accomplished, there are tricks in the source code')
 
-    let expected = [2, 3, 4, 5, 6]
+    const expected = [2, 3, 4, 5, 6]
 
     Rx.Observable.of(2)
       .expand(val => {

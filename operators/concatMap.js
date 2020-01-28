@@ -2,9 +2,9 @@ import Rx from 'toy-rx'
 import { bindContext, bindUnsubscribe } from '@utils'
 
 const concatMap = context => f => Rx.Observable.create(observer => {
-  let observables = []
-  let subscription = new Rx.Subscription()
-  let groupSubscription = new Rx.GroupSubscription()
+  const observables = []
+  const subscription = new Rx.Subscription()
+  const groupSubscription = new Rx.GroupSubscription()
 
   const next = x => {
     const observable = f(x)

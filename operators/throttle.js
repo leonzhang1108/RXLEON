@@ -2,8 +2,8 @@ import Rx from 'toy-rx'
 import { bindContext, bindUnsubscribe } from '@utils'
 
 const throttle = context => f => Rx.Observable.create(observer => {
-  let groupSubscription = new Rx.GroupSubscription()
-  let subscription = new Rx.Subscription()
+  const groupSubscription = new Rx.GroupSubscription()
+  const subscription = new Rx.Subscription()
   let onOff = true
   let latest
 

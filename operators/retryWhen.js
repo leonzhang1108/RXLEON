@@ -2,11 +2,11 @@ import Rx from 'toy-rx'
 import { bindContext, bindUnsubscribe } from '@utils'
 
 const retryWhen = context => f => Rx.Observable.create(observer => {
-  let groupSubscription = new Rx.GroupSubscription()
+  const groupSubscription = new Rx.GroupSubscription()
 
-  let subscription = new Rx.Subscription()
+  const subscription = new Rx.Subscription()
 
-  let innerSubscription = new Rx.Subscription()
+  const innerSubscription = new Rx.Subscription()
 
   const next = observer.next
 

@@ -3,7 +3,7 @@ import { bindContext } from '@utils'
 
 const flatMap = context => f => Rx.Observable.create(observer => {
   let active = 0
-  let groupSubscription = new Rx.GroupSubscription()
+  const groupSubscription = new Rx.GroupSubscription()
 
   const complete = () => --active === 0 && observer.complete()
 

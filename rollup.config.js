@@ -22,7 +22,7 @@ const plugins = [
 ]
 
 export default {
-  input: `lib/index.js`,
+  input: 'lib/index.js',
   output: Object.keys(output).map(format => ({
     name,
     banner,

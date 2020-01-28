@@ -7,7 +7,7 @@ Rx.Observable.prototype.startWith = require('@operators/startWith')
 
 describe('startWith', () => {
   it('startWith interval test', done => {
-    let expected = [-3, -2, -1, 0, 1, 2, 3]
+    const expected = [-3, -2, -1, 0, 1, 2, 3]
     Rx.Observable
       .interval(10)
       .startWith(-3, -2, -1)
@@ -22,7 +22,7 @@ describe('startWith', () => {
   })
 
   it('startWith of test', done => {
-    let expected = ['hello', 'world', 'i am', 'leon']
+    const expected = ['hello', 'world', 'i am', 'leon']
     const source = Rx.Observable.of('world', 'i am', 'leon')
 
     source.startWith('hello').subscribe({

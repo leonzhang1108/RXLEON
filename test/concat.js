@@ -31,7 +31,7 @@ describe('concat', () => {
   })
 
   it('concat static test', done => {
-    let expected = ['first', 'first', 'second', 'second']
+    const expected = ['first', 'first', 'second', 'second']
     const ob1 = Rx.Observable.interval(30).take(2).mapTo('first')
 
     const ob2 = Rx.Observable.interval(20).take(2).mapTo('second')
@@ -48,7 +48,7 @@ describe('concat', () => {
   })
 
   it('concatAll test', done => {
-    let expected = ['ob1', 'ob1', 'ob2', 'ob2']
+    const expected = ['ob1', 'ob1', 'ob2', 'ob2']
 
     const ob1 = Rx.Observable.interval(40).take(2).mapTo('ob1')
 
@@ -66,7 +66,7 @@ describe('concat', () => {
   })
 
   it('concatMap test', done => {
-    let expected = [20, 10]
+    const expected = [20, 10]
     // let expected = [0,1,2,0,1,2]
 
     Rx.Observable.of(20, 10)
@@ -82,7 +82,7 @@ describe('concat', () => {
   })
 
   it('concatMapTo test', done => {
-    let expected = [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]
+    const expected = [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]
 
     Rx.Observable.interval(10)
       .take(5)

@@ -3,8 +3,8 @@ import { bindContext, bindUnsubscribe } from '@utils'
 
 const concatAll = context => () => Rx.Observable.create(observer => {
   let subscription
-  let groupSubscription = new Rx.GroupSubscription()
-  let observableList = []
+  const groupSubscription = new Rx.GroupSubscription()
+  const observableList = []
 
   const error = observer.error
 

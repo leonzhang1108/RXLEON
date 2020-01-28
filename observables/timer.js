@@ -3,7 +3,8 @@ import { bindUnsubscribe } from '@utils'
 
 module.exports = (...vals) => {
   let i = 0
-  let delay, period
+  let delay = null
+  let period = null
 
   if (vals.length === 0) {
     console.log('no parameters')
@@ -24,7 +25,7 @@ module.exports = (...vals) => {
         interval = setInterval(() => observer.next(i++), period)
       }
 
-      let timeout = setTimeout(doInterval, delay)
+      const timeout = setTimeout(doInterval, delay)
 
       return new Rx.Subscription(() => {
         clearInterval(interval)
@@ -33,7 +34,7 @@ module.exports = (...vals) => {
     })
   } else {
     return Rx.Observable.create(observer => {
-      let subscription = new Rx.Subscription()
+      const subscription = new Rx.Subscription()
 
       const timeout = setTimeout(() => {
         observer.next(i)

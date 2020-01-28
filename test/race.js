@@ -7,7 +7,7 @@ Rx.Observable.prototype.mapTo = require('@operators/mapTo')
 
 describe('race', () => {
   it('race test', done => {
-    let expected = ['i won', 'i won', 'i won', 'i won', 'i won']
+    const expected = ['i won', 'i won', 'i won', 'i won', 'i won']
 
     Rx.Observable.race(
       Rx.Observable.interval(15),

@@ -1,7 +1,7 @@
 import Rx from 'toy-rx'
 
 module.exports = (...observables) => Rx.Observable.create(observer => {
-  let groupSubscription = new Rx.GroupSubscription()
+  const groupSubscription = new Rx.GroupSubscription()
   let total = 0
 
   const next = observer.next

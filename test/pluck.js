@@ -5,7 +5,7 @@ Rx.Observable.prototype.plunk = require('@operators/plunk')
 
 describe('pluck', () => {
   it('pluck test', done => {
-    let expected = ['Batman', 'Deathstroke']
+    const expected = ['Batman', 'Deathstroke']
 
     const data = [{
       name: 'Bruce Wayne',

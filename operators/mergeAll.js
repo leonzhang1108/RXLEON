@@ -3,8 +3,8 @@ import { bindContext, bindUnsubscribe } from '@utils'
 
 const mergeAll = context => () => Rx.Observable.create(observer => {
   let active = 0
-  let subscription = new Rx.Subscription()
-  let groupSubscription = new Rx.GroupSubscription()
+  const subscription = new Rx.Subscription()
+  const groupSubscription = new Rx.GroupSubscription()
 
   const error = observer.error
 

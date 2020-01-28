@@ -3,7 +3,7 @@ import { bindContext } from '@utils'
 
 const every = context => f => Rx.Observable.create(observer => {
   let y = false
-  let subscription
+  let subscription = null
 
   const next = x => {
     y = f(x)

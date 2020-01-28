@@ -3,8 +3,8 @@ import { bindContext } from '@utils'
 Rx.Observable.combineLatest = require('@observables/combineLatest')
 
 const combineAll = context => () => Rx.Observable.create(observer => {
-  let observables = []
-  let groupSubscription = new Rx.GroupSubscription()
+  const observables = []
+  const groupSubscription = new Rx.GroupSubscription()
 
   const next = observable =>
     observables.push(observable)

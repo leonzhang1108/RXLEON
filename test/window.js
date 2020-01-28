@@ -9,7 +9,7 @@ Rx.Observable.prototype.mergeAll = require('@operators/mergeAll')
 
 describe('window', () => {
   it('window test', done => {
-    let expected = [0, 1, 0, 1]
+    const expected = [0, 1, 0, 1]
 
     Rx.Observable.interval(50)
       .window(Rx.Observable.interval(10).take(2))

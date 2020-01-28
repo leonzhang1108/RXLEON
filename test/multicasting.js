@@ -33,7 +33,7 @@ describe('multicasting', () => {
   })
 
   it('publish test', done => {
-    let expected = [
+    const expected = [
       'first: 0',
       'second: 0',
       'first: 1',
@@ -58,7 +58,7 @@ describe('multicasting', () => {
   })
 
   it('share test', done => {
-    let expected = [
+    const expected = [
       'ALL HAiL JLA',
       'ALL HAiL JLA'
     ]

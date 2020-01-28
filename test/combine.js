@@ -9,7 +9,7 @@ Rx.Observable.prototype.combineAll = require('@operators/combineAll')
 
 describe('combine', () => {
   it('combineLatest test with callback function', done => {
-    let expected = [
+    const expected = [
       [0, 0, 0],
       [1, 0, 0],
       [1, 1, 0],
@@ -39,7 +39,7 @@ describe('combine', () => {
     })
   })
   it('combineLatest test without callback function', done => {
-    let expected = [
+    const expected = [
       [0, 0, 0],
       [1, 0, 0],
       [1, 1, 0],
@@ -69,16 +69,16 @@ describe('combine', () => {
   })
 
   it('combineAll test', done => {
-    let expected = [
-      [ 'Result (0): 0', 'Result (1): 0' ],
-      [ 'Result (0): 1', 'Result (1): 0' ],
-      [ 'Result (0): 1', 'Result (1): 1' ],
-      [ 'Result (0): 2', 'Result (1): 1' ],
-      [ 'Result (0): 2', 'Result (1): 2' ],
-      [ 'Result (0): 3', 'Result (1): 2' ],
-      [ 'Result (0): 3', 'Result (1): 3' ],
-      [ 'Result (0): 4', 'Result (1): 3' ],
-      [ 'Result (0): 4', 'Result (1): 4' ]
+    const expected = [
+      ['Result (0): 0', 'Result (1): 0'],
+      ['Result (0): 1', 'Result (1): 0'],
+      ['Result (0): 1', 'Result (1): 1'],
+      ['Result (0): 2', 'Result (1): 1'],
+      ['Result (0): 2', 'Result (1): 2'],
+      ['Result (0): 3', 'Result (1): 2'],
+      ['Result (0): 3', 'Result (1): 3'],
+      ['Result (0): 4', 'Result (1): 3'],
+      ['Result (0): 4', 'Result (1): 4']
     ]
 
     Rx.Observable.interval(10).take(2).map(val =>

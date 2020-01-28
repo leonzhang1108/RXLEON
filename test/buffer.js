@@ -7,7 +7,7 @@ Rx.Observable.prototype.buffer = require('@operators/buffer')
 
 describe('buffer', () => {
   it('buffer test', done => {
-    let expected = [
+    const expected = [
       [0, 1],
       [2, 3],
       [4, 5],

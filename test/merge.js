@@ -44,7 +44,7 @@ describe('merge', () => {
   })
 
   it('mergeAll test', done => {
-    let expected = [0, 1, 2, 0, 1, 2, 0, 1, 2]
+    const expected = [0, 1, 2, 0, 1, 2, 0, 1, 2]
 
     Rx.Observable.interval(80)
       .mapTo(0)

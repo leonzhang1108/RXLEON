@@ -6,7 +6,7 @@ Rx.Observable.prototype.pairwise = require('@operators/pairwise')
 
 describe('pairwise', () => {
   it('pairwise without param test', done => {
-    let expected = [
+    const expected = [
       [0, 1],
       [1, 2],
       [2, 3]
@@ -26,7 +26,7 @@ describe('pairwise', () => {
   })
 
   it('pairwise with param test', done => {
-    let expected = [
+    const expected = [
       [0, 1, 2, 3, 4],
       [1, 2, 3, 4, 5],
       [2, 3, 4, 5, 6]

@@ -11,11 +11,11 @@ module.exports = {
 
   getType,
 
-  isFunction: p => getType(p) === `[object Function]`,
+  isFunction: p => getType(p) === '[object Function]',
 
-  isString: p => getType(p) === `[object String]`,
+  isString: p => getType(p) === '[object String]',
 
-  isArray: p => getType(p) === `[object Array]`,
+  isArray: p => getType(p) === '[object Array]',
 
   isNull: p => p === undefined
 }

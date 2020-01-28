@@ -2,7 +2,7 @@ import Rx from 'toy-rx'
 import { bindContext } from '@utils'
 
 const startWith = context => (...initVals) => Rx.Observable.create(observer => {
-  let storedVals = initVals
+  const storedVals = initVals
 
   const next = x => {
     storedVals.push(x)

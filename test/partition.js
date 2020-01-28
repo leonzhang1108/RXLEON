@@ -7,7 +7,7 @@ Rx.Observable.prototype.partition = require('@operators/partition')
 
 describe('partition', () => {
   it('partition test', done => {
-    let expected = [
+    const expected = [
       'Even: 2',
       'Even: 4',
       'Even: 6',

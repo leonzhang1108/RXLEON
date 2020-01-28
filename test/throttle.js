@@ -8,7 +8,7 @@ Rx.Observable.prototype.throttleTime = require('@operators/throttleTime')
 
 describe('throttle', () => {
   it('throttle test', done => {
-    let expected = [0, 3, 6]
+    const expected = [0, 3, 6]
     Rx.Observable.interval(10)
       .throttle(() => Rx.Observable.interval(20))
       .take(3)
@@ -21,7 +21,7 @@ describe('throttle', () => {
       })
   })
   it('throttleTime test', done => {
-    let expected = [0, 10, 20]
+    const expected = [0, 10, 20]
 
     Rx.Observable.interval(10)
       .throttleTime(100)

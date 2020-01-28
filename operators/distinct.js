@@ -2,7 +2,7 @@ import Rx from 'toy-rx'
 import { bindContext } from '@utils'
 
 const distinct = context => () => Rx.Observable.create(observer => {
-  let list = []
+  const list = []
 
   const next = x => {
     if (list.indexOf(x) >= 0) return

@@ -2,7 +2,7 @@ import Rx from 'toy-rx'
 import { bindContext } from '@utils'
 
 const merge = context => (...observables) => Rx.Observable.create(observer => {
-  let groupSubscription = new Rx.GroupSubscription()
+  const groupSubscription = new Rx.GroupSubscription()
   let total = 1
 
   const next = observer.next

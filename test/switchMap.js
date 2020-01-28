@@ -6,7 +6,7 @@ Rx.Observable.prototype.switchMap = require('@operators/switchMap')
 
 describe('switchMap', () => {
   it('switchMap test', done => {
-    let expected = [0, 1, 0, 1, 2, 3, 4]
+    const expected = [0, 1, 0, 1, 2, 3, 4]
 
     Rx.Observable.interval(50)
       .take(2)

@@ -29,7 +29,7 @@ describe('error', () => {
   })
 
   it('retry test', done => {
-    let expected = [0, 1, 2, 0, 1, 2, 'error']
+    const expected = [0, 1, 2, 0, 1, 2, 'error']
 
     Rx.Observable.interval(10)
       .flatMap(val =>
@@ -50,7 +50,7 @@ describe('error', () => {
   })
 
   it('retryWhen test', done => {
-    let expected = [0, 1, 2, 0, 1, 2]
+    const expected = [0, 1, 2, 0, 1, 2]
 
     Rx.Observable.interval(20).map(val => {
       if (val > 2) {

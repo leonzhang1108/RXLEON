@@ -2,8 +2,8 @@ import Rx from 'toy-rx'
 import { bindContext, bindUnsubscribe } from '@utils'
 
 const concatMapTo = context => observable => Rx.Observable.create(observer => {
-  let subscription = new Rx.Subscription()
-  let groupSubscription = new Rx.GroupSubscription()
+  const subscription = new Rx.Subscription()
+  const groupSubscription = new Rx.GroupSubscription()
   let active = 0
   let initiated = false
 

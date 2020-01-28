@@ -2,7 +2,7 @@ import Rx from 'toy-rx'
 import { bindContext, bindUnsubscribe } from '@utils'
 
 const expand = context => f => Rx.Observable.create(observer => {
-  let subscription = new Rx.Subscription()
+  const subscription = new Rx.Subscription()
 
   let count = 5
 

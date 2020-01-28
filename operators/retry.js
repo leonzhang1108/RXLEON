@@ -3,7 +3,7 @@ import { bindContext, bindUnsubscribe } from '@utils'
 
 const retry = context => initCount => Rx.Observable.create(observer => {
   let count = initCount
-  let subscription = new Rx.Subscription()
+  const subscription = new Rx.Subscription()
 
   const next = observer.next
 

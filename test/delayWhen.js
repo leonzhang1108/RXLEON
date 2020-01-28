@@ -8,7 +8,7 @@ Rx.Observable.prototype.delayWhen = require('@operators/delayWhen')
 
 describe('delayWhen', () => {
   it('delayWhen test', done => {
-    let expected = [0, 1, 2, 3, 4]
+    const expected = [0, 1, 2, 3, 4]
 
     const message = Rx.Observable.interval(10)
 
